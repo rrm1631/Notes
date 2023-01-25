@@ -1,0 +1,209 @@
+..practiced using tblemployees, dbsocialmedia
+
+Datatypes:
+//Numeric Data - (int, double, float, bool)
+1.int - stores numeric values
+2.double - stores numeric values w/ decimals
+3.float - stores numeric values w/ decimals w/ a high floating point
+4.boolean - stores true=1 or false=0
+
+//Text Data - (varchar, text)
+1.varchar - set characters w/ a width or size up to 8000 characters
+2.text - - set characters a size of 2GB	text data.
+
+//Time Data - (date, time, datetime)
+1. date - stores date in the format YYYY-MM-DD
+2. time - stores time in the format hh:mm:ss
+3. datetime - stores date and time in the format YYYY-MM-DD hh:mm:ss
+
+//BLOB - stores large binary data (img, files, docs)
+
+
+Constraints:
+1.Not Null - will not accept empty values
+2.Unique - will not accept duplicate values
+3.Primary Key - will not accept empty values and will not accept duplicate values
+4.Auto_Increment - used primarily in Primary key to automatically generate values (numerical data only)
+
+
+
+Conditional Operators
+= - equals
+<> or != - not equals
+> - greater than
+< - less than
+>= - greater than or equals
+<= - less than or equals
+
+
+
+//KEYWORDS
+1. NOT -  used to inverth the WHERE condition
+	(ex. SELECT * FROM tblemployees WHERE NOT LastName = "Santos")
+2. IN - used after the WHERE keyword to select multiple values in a parameter
+	(ex. SELECT * FROM tblemployees WHERE LastName IN ("Santos", "DelaCruz", "Mallari"))
+3. AND - used to add conditions in a WHERE in which both conditions must be true
+	(ex. SELECT * FROM tblemployees WHERE LastName = "Santos" AND Age <= 30)
+4. OR - used to add conditions in a WHERE in which either conditions must be true
+	(ex. SELECT * FROM tblemployees WHERE LastName = "Santos" OR Age >= 30)
+5.DISTINCT - used to select unique values only from the parameters provided
+	(ex. SELECT DISTINCT LastName FROM tblemployees)
+6.COUNT() - used to return the count of the selected data
+	(ex. SELECT COUNT(DISTINCT(LastName)) FROM tblemployees)
+7.ORDER BY - used to sort the records in ascending order by default
+	(ex. SELECT * FROM Customers ORDER BY Country DESC;)
+8.IS NULL / IS NOT NULL - used to check if values are null, (different from int 0, null is = ""/NULL)
+	(ex. SELECT * FROM tblproducts  WHERE Quantity IS NOT NULL;)
+9.LIMIT - used to select a limited number of records
+	(ex. SELECT * FROM tblemployees LIMIT 2;) //displays 2 records
+10.MIN()/MAX() -  returns the smallest/largest value of the selected column.
+	(ex. SELECT MIN(Price) AS cheapestProduct FROM tblProducts)
+11.LIKE - used in a WHERE clause to search for a specified pattern in a column.
+	(ex. SELECT * FROM products WHERE product_name LIKE 'Light';)
+12.GROUP BY - groups rows that have the same values into summary rows, like "find the number of customers in each country". Often used with aggregate functions.
+	(ex. SELECT COUNT(CustomerID), Country FROM Customers GROUP BY Country;)
+
+//Aggregate Functions - (COUNT(), MAX(), MIN(), SUM(), AVG()) 
+
+
+//WILDCARDS - typically used in LIKE
+%  Represents zero or more characters, (ex. bl% finds bl, black, blue, and blob)
+_  Represents a single character, (ex. h_t finds hot, hat, and hit)
+[] Represents any single character within the brackets, (ex. h[oa]t finds hot and hat, but not hit)	
+^  Represents any character not in the brackets (ex. h[^oa]t finds hit, but not hot and hat)
+-  Represents any single character within the specified range (ex. c[a-b]t finds cat and cbt)
+
+WHERE CustomerName LIKE 'a%'	Finds any values that starts with "a"
+WHERE CustomerName LIKE '%a'	Finds any values that ends with "a"
+WHERE CustomerName LIKE '%or%'	Finds any values that have "or" in any position
+WHERE CustomerName LIKE '_r%'	Finds any values that have "r" in the second position
+WHERE CustomerName LIKE 'a__%'	Finds any values that starts with "a" and are at least 3 characters in length
+WHERE ContactName LIKE 'a%o'	Finds any values that starts with "a" and ends with "o"
+
+
+
+
+//SQL Aliases - SQL aliases are used to give a table, or a column in a table, a temporary name.
+- Alias Column Syntax: (SELECT column_name AS alias_name FROM table_name;)
+(ex. SELECT CustomerID AS ID, CustomerName AS Customer FROM Customers;)
+
+- Alias Table Syntax: (SELECT column_name FROM table_name AS alias_name;)
+
+
+//DB Commands
+TRUNCATE - deletes all data inside a table
+	(ex. TRUNCATE table_name;)
+DROPTABLE - delete the table itself
+	(ex. DROPTABLE table_name;)
+DROP DATABASE - delete the database
+	(ex. DROP DATABASE table_name;)
+
+
+
+SQL Commands:
+//CREATE DATABASE database_name;
+
+//CREATE TABLE table_name (variable datatype) or CREATE TABLE table_name (variable datatype constraints);
+Ex.
+CREATE TABLE Students(
+	StudID int primary key auto_increment,
+	FirstName varchar(16) not null,
+	LastName varchar(16) not null,
+	PhoneNum varchar(11),
+	Scholarship boolean not null,
+	DateEnrolled date not null	
+);
+
+
+
+//INSERT INTO table_name (col1,col2) VALUES ('val1', 'val2');
+Ex.
+INSERT INTO Students(FirstName,LastName,PhoneNum,Scholarship,DateEnrolled) 
+VALUES ('Raphael','Mallari', '09999999999', false, '2022-11-28'),
+	('Mario', 'Bros', '09222222222', true, '2022-11-28');
+
+
+//SELECT * FROM table_name; or SELECT * FROM table_name WHERE condition;
+Ex.
+SELECT * FROM tblemployees WHERE LastName = "Santos";
+
+
+// UPDATE table_name SET col1=val1, col2=val2, ... WHERE condition 
+Ex.
+UPDATE tblusers SET BIO = "Hello World, I'm Mikey!" WHERE UID = 1
+
+
+//DELETE FROM table_name WHERE condition
+Ex.
+- DELETE FROM tblProducts WHERE PID = 2;
+- DELETE FROM tblProducts WHERE PID IN(1,4); //deletes PID with 1 and 4
+
+
+//ALTER TABLE table_name ADD/DROP/MODIFY column_name
+Ex. 
+- ALTER TABLE Customers ADD Email varchar(255);
+- ALTER TABLE Customers DROP COLUMN Email;
+- ALTER TABLE Persons MODIFY COLUMN DateOfBirth year;
+//For Foreign Keys
+- ALTER TALBE orders ADD FOREIGN KEY (product_id) REFERENCEs products(product_id); (add foreign key)
+- ALTER TALBE orders DROP FOREIGN KEY product_id; (remove foreign key)
+
+
+
+
+
+
+//MySQL Joining Tables
+- A JOIN clause is used to combine rows from two or more tables, based on a related column between them.
+- A JOIN Clause by default is also an INNER JOIN
+
+//Types of Joins:
+INNER JOIN: Returns records that have matching values in both tables
+LEFT JOIN:  Returns all records from the left table, and the matched records from the right table
+RIGHT JOIN: Returns all records from the right table, and the matched records from the left table
+CROSS JOIN: Returns all records from both tables
+
+
+//JOIN / INNER JOIN - is used to combine rows from two or more tables, based on a related column between them.
+
+Syntax:
+SELECT table1.column, table2.column FROM table1 JOIN table2 ON table1.id = table2.id;
+
+ex.
+SELECT users.username, users.first_name, users.last_name, addresses.city, addresses.address_line_1, addresses.state_province 
+FROM addresses JOIN users ON addresses.users_id = users.id;
+
+Note:
+- basically joins the tables that has matching columns only.
+
+
+//Joining Multiple Tables
+Ex. 
+SELECT orders.order_id, products.product_name, users.username, addresses.city
+FROM `orders` 
+INNER JOIN `products` ON orders.product_id = products.product_id
+JOIN `users`  ON orders.user_id = users.id
+JOIN addresses ON orders.address_id = addresses.address_id;
+
+
+
+
+
+//LEFT JOIN -  keyword returns all records from the left table (table1), and the MATCHING records from the right table (table2).
+
+Syntax:
+SELECT table1.column, table2.column FROM table1 LEFT JOIN table2 ON table1.id = table2.id;
+
+
+Note: 
+- Records from the right value that has no matching values will be returned as NULL.
+- similar to inner join but also takes the columns that doesn't match in the left
+
+
+
+
+//RIGHT JOIN -  keyword returns all records from the right table (table2), and the MATCHING records from the left table (table1).
+
+
+Syntax:
+SELECT table1.column, table2.column FROM table1 RIGHT JOIN table2 ON table1.id = table2.id;
