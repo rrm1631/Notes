@@ -1,0 +1,57 @@
+RDBMS (Relational Database Management System)
+
+Relational Structures - stores information in a series of 2 dimentional data tables
+	
+Tables 	- is a collection of related data entries, consists of columns and rows.
+
+Column 	- holds specific information about every record in the table.
+	- other terms (attributes, values, fields)
+
+Rows	- is each individual entry that exists in a table.
+	- other terms (records, tuples)
+
+
+//RELATIONAL DATABASE
+- A relational database defines database relationships in the form of tables. The tables are related to each other - based on data common to each.
+
+
+
+//Data Integrity
+1. Entity Integrity − There are no duplicate rows in a table.
+
+2. Domain Integrity − Enforces valid entries for a given column by restricting the type, the format, or the range of values.
+
+3. Referential integrity − Rows cannot be deleted, which are used by other records.
+
+4. User-Defined Integrity − Enforces some specific business rules that do not fall into entity, domain or referential integrity.
+
+
+//Database Normalization - is the process of efficiently organizing data in a database
+1. First Normal Form (1NF)
+	Rule 1 : looking at the data to be stored, organizing the data into columns, defining what type of 			data each column contains and then finally putting the related columns into their own table.
+	Rule 2 : ensuring that there are no repeating groups of data	
+	Rule 3 : create a primary key for each table which we have already created. 
+
+Note:
+- usually done to seperate attributes into specific tables based on certain relations
+	
+2. Second Normal Form (2NF)
+	Rule 1 : it should meet all the rules for 1NF 
+	Rule 2 : there must be no partial dependences of any of the columns on the primary key
+
+Note:
+- usually done when, 2 tables has a many to many relationship, it requires you to create another table that will contain a relations between the two tables.
+
+	Ex.	
+		books -< book_authors >- author
+
+	book attributes (bookID)
+	author attributes (authorID)
+	book_authors attributes (bookID, authorID) 	 
+
+
+3. Third Normal Form (3NF)
+
+
+
+
