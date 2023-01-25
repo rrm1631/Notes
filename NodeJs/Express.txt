@@ -1,0 +1,100 @@
+//Using Express 
+npm install express
+
+1. Create an instance of express
+- const app = express();
+
+2. Listen for request 
+- app.listen(3000);
+- app.get('/', (req, res)=>{
+	res.send('<p>Home</p>'); //sends the HTTP response
+	res.sendFile('./views/index.html', {root: __dirname}); //transfers the file at the given path'
+});
+
+
+res.send('<p>Home</p>'); //sends the HTTP response
+res.sendFile('./views/index.html', {root: __dirname}); //transfers the file at the given path'
+
+res.use((req, res)=>{}) //fires for every single request regardless of the url
+res.status(404).use() //use to set the status code
+
+Note:
+res.use() - once browser starts reading the code, if it reaches this line, it will fire a function regardless 	of url (must be declared at the bottom).
+res.status - express doesn't automatically know that the html pass is actually 404, this is use to manually 	set that status in order for express to know.
+
+
+
+
+
+//View Engines
+- allows users to write html templates and inject dynamic data and logic.
+
+1.ejs (npm install ejs)
+app.set('view engine', 'ejs') - used to set the view engine to be used
+
+res.render() - take a view/html file inside the view folder and send it to the browser
+
+//Passing Data in Views
+1. <% code %> - using ejs tags similar to php tags, it basically runs javascript in the server
+2. <%= %> - add "=" when displaying data to the browser using ejs
+3. .render(path, {objects}); - by adding an object as a paremeter using render, you can pass the value into 		the ejs file being rendered.
+
+Note:
+- you can directly call the object being passed using .render() without creating any references
+
+
+
+
+
+
+//Partials
+partials - files or parts of the template that can be reused
+
+<$- include('path'); %> - used to include the data inside to another file.
+
+Note:
+<%- %> - "-" negative sign is used instead of "=", since "=" escapes special characters and ends up as a 		string instead of html.
+
+- similar to layouts in laravel, files added to a seperate folder "partials" 
+partials files:
+1. head
+2. nav
+3. footer
+
+
+
+
+
+//Adding CSS
+middleware - code that runs on the server, between getting a request and sending a response
+app.use() - is what is primarily used in this situation
+
+middleware example:
+1. Logger - log details of every request
+2. Authentication - check middleware for protected routes
+3. Middleware to parse JSON data from request
+4. return 404 pages
+
+.next() - is used to tell middleware what to do next, it execute the next or other functions after a user's 	request is made and before the request is completed.
+	- when invoked, it executes the next middleware in the middleware stack.
+ 
+Note:
+when .use() is fired, after running the file, it doesn't know what to do next and won't proceed to read the rest of the code without telling it what to do next. .next() is used to solve that issue	.
+
+
+
+
+
+//3rd Party Middlewares 
+1.Morgan - middleware automatic logger, logs the path, method, etc..
+
+//using morgan
+1. npm install morgan
+2. const morgan = require('morgan');
+3. app.use(morgan('dev'));
+
+
+//Static Files
+app.use(express.static('file/folder')); //used to add css
+
+

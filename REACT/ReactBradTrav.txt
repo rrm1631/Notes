@@ -1,0 +1,369 @@
+npm init - initialize node
+npm start  - start development server
+npm install react-scripts - run if 'react-scripts' is not recognized as an internal or external command, operable program or batch file. (error)
+
+jsx - javascript xml
+
+//RETURN HTML in App.js
+1. oneline - return <h1> Hello World </h1>
+2. multiple-lines - encapsulate elements inside a () to return.
+
+	return (
+	   <div>
+		<h1> Welcome </h1>
+		<p> lorem ipsum...<p>
+	   </div>
+	);
+
+Note:
+- when returning multiple elements, always wrap it using a div before adding multiple elements
+- when returning an element, it only accepts 1 element therefor it is required to wrap elements in a parent div.
+
+Fragments - if you dont want your elements wrapped inside a div, you can use fragments instead. Usually used 		in tables.
+	ex.
+		return(
+			<>
+				<h1> Welcome </h1>
+				<p> lorem ipsum...<p>	
+			</>
+		);
+
+
+//Adding Classes
+- when defining a class in jsx, use className="", instead of using class="".
+	ex.	
+	return (
+	   <div className='container'>
+		<h1> Welcome </h1>
+		<p> lorem ipsum...<p>
+	   </div>
+	);
+
+
+//Display javascript variables and expressions
+- if you created a variable or expression and want to display or add to the html element being returned
+you can use {} to output them.
+
+	ex.	
+	const title = "My Blogs";
+	const body = "This is my blogs";
+
+	return (
+	   <div className='container'>
+		<h1> {title}</h1>
+		<p> {body}<p>
+	   </div>
+	);
+
+
+
+//PROPS - are arguments passed into React components
+
+ex.
+	//APP COMPONENT
+	function App() {
+  		return(
+    		<>
+      			<Header text='Hello World!'/>  //text is a props
+      			<DynamicVariablesAndList/>
+    		</>
+  		)
+	}
+
+	//HEADER COMPONENT
+	export default function Header(props) { //add props as parameter to use props 
+  		return (
+    			<div className='container'>
+        			<h1>{props.text}</h1> //call props.attribute_name to display
+    			</div>
+  		)
+	}
+
+Note:
+- props are read-only, cannot be modified
+
+
+//DESTRUCTURING PROPS
+ex. 
+	export default function Header({text}) { //enclosed in curly braces the name of the props 
+  		return (
+    			<div className='container'>
+        			<h1>{text}</h1>
+    			</div>
+  		)
+	}
+
+//DEFAULT PROPS - allows you to set default values for the props argument.
+ex.
+
+	Header.defaultProps = {
+		text = 'Feedback UI';
+	}
+
+
+
+
+//ADDING STYLES or CSS in JS
+1. inline
+	<Header style={{backgroundColor: 'blue', color: 'red'}}>
+
+2. internal
+	const headerStyles = {
+		backgroundColor: 'blue', 
+		color: 'red'
+	}
+	
+	<Header style={headerStyles}>
+
+3. external
+	- create a global styles.css file
+	- import './styles.css';
+
+Note:
+- style attributes are written in camelcase.
+	ex. css: background-color: 'blue';  js: backgroundColor: 'blue';
+
+
+
+
+
+
+//STATES - allows us to manage changing data in an application.
+
+import { useState } from 'react';  //import useState to use
+
+useState(); -  is a Hook that allows you to have state variables in functional components. 	
+syntax:
+	const [state_name, setState/FunctionName] = useState(defaultValue); 
+	//the setState/FunctionName parameter is used to update the state.
+
+setState(); - used to change or update a state.
+ex.
+	setRating(10); //this changes the prev value to 10
+
+	setRating((prev)=>{ //callback funtion to access the prev value
+		return prev + 1 //add 1 to prev value
+	})
+
+//State Types
+1. Component Level State - is data that is associated with one specific component.
+	
+
+2. App or Global Level State
+
+
+Note:
+- state changes can be asynchronous
+- can be modified using this.setState
+- locally scoped, can only be used inside the component declared on
+
+
+
+
+
+
+//ROUTING
+npm install react-router-dom@5.2.0
+
+React Router - It enables the navigation among views of various components in a React Application, allows changing the browser URL, and keeps the UI in sync with the URL.	
+
+2 Types of Routes:
+	a. Browser Router - ex. http://localhost:3000/about
+	b. Hash Router - ex. http://localhost:3000/#about
+
+import {BrowserRouter} from 'react-router-dom'; - enables the us of Routes
+Note: 
+- To use routes, it needs to be encapsulated by the type of route used.
+
+ex.
+	<BrowserRouter>
+		<Route path='/about'> Learn more about us. </Route>
+	<BrowserRouter>
+
+//ROUTE
+import {Route} from 'react-router-dom'; 
+<Route> - use to render outputs/component in a certain route.
+	ex. 1
+	<Route path='/about'> Learn more about us. </Route> //Output the string when path = "/about"
+	ex. 2
+	<Route path='/about' component={AboutPage}/> //RENDERS A COMPONENT when path = "/about"
+Note:
+- an application can have multiple <Routes>
+
+exact - ensure that the route will match only if the current URL is an exact match.
+ 	ex. <Route exact path='/'>
+
+
+//Links & NavLink
+- The <Link> and <NavLink> are the components provided by react-router-dom to navigate around the react application. 
+
+- Anchor tags will reload the page and re-render all the components. While <Link> and <NavLink> will only re-render updated components matched with the URL path of the Route without reloading
+
+1. <Link> - is an element that lets the user navigate to another page 
+import {Link} from 'react-router-dom';
+ex. 
+	<Link to='/about'> 
+            <h2> Go To About </h2>
+        </Link>
+
+2. <NavLink> - A <NavLink> is a special kind of <Link> that knows whether or not it is "active"
+import {NavLink} from 'react-router-dom';
+
+ex. 	<NavLink to='/' activeClassName='active'>
+            Home
+        </NavLink>
+
+
+//Switch or (Routes for vr.6)
+import {Switch} from 'react-router-dom';
+
+<Switch> - looks through all of its child routes and it displays the first one whose path matches the current URL.
+
+ex. 
+	<Router>
+      		<Switch>
+        		<Route exact path="/" component={Home} />
+        		<Route path="/about" component={About} />
+      		</Switch>
+    	</Router>
+
+
+//useParams
+useParams() - returns an object of key/value pairs of URL parameters. allows you to access the parameters of the current URL.
+
+ex.     
+	//App Route: 
+	<Route path='/post/:id' component={postPage}>
+
+	//URL : http://localhost:3000/post/2
+	import {useParams} from 'react-router-dom';
+
+	const params = useParams();
+
+	return(
+		<div> <h1> id {params.id} </h1></div>
+	)
+
+
+
+
+
+
+//CONTEXT & PROVIDER
+
+Context - provides a better way to pass data through the component tree w/o having to pass props manually at every every level.
+
+To create context, you must Import createContext and initialize it:
+ex.
+	import { createContext } from "react"; 
+
+	const UserContext = createContext();
+
+
+
+Provider - Every Context object comes with a Provider, it accepts a value prop to be passed/share data across tree descendant nodes.
+
+- Wrap child components in the Context Provider and supply the state value.
+ex.
+	const [user, setUser] = useState("Raphael");
+
+	<UserContext.Provider value={user}> //value will serve as the props to be used
+		//here we wrap the components around the provider for them to gain access to values passed.
+		<h1> {`Hello ${user}!`}
+		<someComponent/>
+	</UserContext.Provider>
+
+Note: 
+- in order for the components to gain access in using states or context, a provider is required.
+
+
+
+//useContext
+import {useContext} from 'react';
+
+useContext(contextName) - used in order to access the context in a child component
+
+ex.
+	 function Component5() {
+  		const user = useContext(UserContext);
+	
+  		return (
+    		<>
+      		<h1>Component 5</h1>
+      		<h2>{`Hello ${user} again!`}</h2>
+    		</>
+  		);
+	}
+
+
+//SideEffect
+
+Pure functions - Most React components are pure functions, meaning they receive an input and produce a predictable output of JSX.
+
+ex.
+	export default function App() {
+  		return <User name="John Doe" />   
+	}
+  
+	function User(props) {
+  		return <h1>{props.name}</h1>; // John Doe
+	}
+	
+	//This is pure because, given the same input, it will always return the same output "John Doe".
+
+Side Effects - Side effects are not predictable because they are actions which are performed with the "outside world."
+
+Some examples of side effects are: 
+1. fetching data, 
+2. directly updating the DOM
+3. timers ex. setTimeout()
+
+
+ex.
+	function Greet({ name }) {
+  		const message = `Hello, ${name}!`; // Calculates output
+  		document.title = `Greetings to ${name}`; // Side-effect!
+  		return <div>{message}</div>;       // Calculates output
+	}
+
+
+useEffect(); - tells React that your component needs to do something after render, it allows you to 	perform side effects in your components.
+
+	import { useEffect } from 'react';
+
+syntax: 
+	useEffect(<function>, <dependency[]>)
+
+<dependency> - "optional", if a dependent changes it fires up the callback <function>. If empty, it will only fire once after the first initial render
+
+
+
+
+
+//JSON server
+
+npm install json-server
+@package.json add to "scripts":{ "server": "json-server --watch db.json --port 5000" }
+
+npm run server 
+
+//Cncurrently - used to run both commands npm start and npm run server for this case
+npm install concurrently
+@package.json add to "scripts":{ "dev": "concurrently \"npm run server"\ \"npm start"\" }
+
+
+
+
+
+//Logical AND
+ex.
+	const sayHello = true;
+	{ sayHello && console.log('Hello') }
+
+- if true (run the right side), else if false(skip/do nothing)
+
+
+
+//SHORTCUTS using VSCODE ES7 plugin
+rfc or rfce - creates a standard react component structure 
+impt - import PropTypes from 'prop-types';

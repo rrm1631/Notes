@@ -1,0 +1,330 @@
+npx create-react-app myproject - installs create-react-app package and create react application
+
+components - used for building interactive user interfaces and web applications quickly and efficiently with significantly less code.
+
+jsx (javascript xml) - allows users to easily create html templates and components 
+babel - converts jsx templates into html and render it to the DOM
+
+className - used to add classes in jsx
+	ex.
+		<div className='Card'></div>
+
+
+
+
+//Import and Export Components
+1. Exporting Components - in order to use a component in App.js, you need to export the component.
+ex.
+	export default myComponent;
+
+2. Importing Components - inside App.js in order to add a component to your main App(), you need to first import such components.
+ex.
+	import myComponent from "./path";
+
+	function App() {
+  	return (
+    		<div className="App">
+        		<myComponent/> //add component here
+    		</div>
+  		);
+	}
+
+shortcut: rfc or rfce - creates a standard react component structure 
+
+
+
+//Dynamic Values
+{} - You can pass any JavaScript expression and add it as a prop, by surrounding it with {}.
+ex.
+	const title='AppTitle';	
+
+	function App() {
+  	return (
+    		<div className="App">
+        		<h1> {title} </h1> //will display 'AppTitle when run'
+    		</div>
+  		);
+	}
+
+Note:
+- react automatically converts the data type into a string when passed inside {}, except for bool/obj
+
+
+
+
+
+//ADDING STYLES CSS
+1. inline
+	<Header style={{backgroundColor: 'blue', color: 'red'}}>
+
+2. internal
+	const headerStyles = {
+		backgroundColor: 'blue', 
+		color: 'red'
+	}
+	
+	<Header style={headerStyles}>
+
+3. external
+	- create a global styles.css file
+	- import './styles.css';
+
+Note:
+- style attributes are written in camelcase.
+	ex. css: background-color: 'blue';  js: backgroundColor: 'blue';
+
+
+
+
+
+
+//EVENTS
+1. onClick Event
+ex.
+	 <button onClick={handleClick}>CLick Me</button>
+
+//Handle Functions with Arguments using anonymous function
+ex. 
+	<button onClick={()=>{sayHello('Mario')}}>CLick Me 2</button> //will now fire only when clicked
+
+
+
+
+
+//Props and States
+1. Props - are arguments passed into React components
+ex.
+	//App Component
+	<Header text='Hello World!'/>
+
+	//Header Component
+	function Header({text}) { //destructure using {}
+		<h1> {text} </h1> //will output Hello World!
+	}
+	
+Note:
+- props are read-only, cannot be modified
+
+2. States - allows us to manage changing data in an application.
+import { useState } from 'react';  //import useState to use
+
+useState(); -  is a Hook that allows you to have state variables in functional components. 
+setState(); - used to change or update a state.
+ex.
+	const [state_name, setState/FunctionName] = useState(defaultValue);
+
+
+
+	
+//Hooks
+React Hooks - are simple JavaScript functions that we can use to isolate the reusable part from a functional component.
+
+Ex.
+1. useState
+2. useEffect
+3. useContext
+
+Note:
+- a hook starts with a word 'use'. Ex. useState();
+
+
+
+
+
+//Outputting List with Keys
+
+key - is a special string attribute you need to include when creating lists of elements. This helps React to identify which items have changed, are added, or are removed.
+
+ex.	
+	const todoItems = todos.map((todo) =>
+  		<li key={todo.id}>
+    			{todo.text}
+  		</li>
+	);
+
+Note:
+- keys are used to keep track of each item in the DOM, for when data changes (remove/add), react can keep tract of each item. 
+- keys are required, if not react cannot distinguish between list items in the DOM.
+- basically like an ID
+
+
+
+
+//useEffect
+useEffect() - is a hook that is fired everytime the DOM is rendered/re-rendered.
+
+import {useEffect} from 'react';
+
+Syntax: useEffect(function, [dependency]);
+
+Example 1:
+	useEffect(()=>{ console.log('Hello World') }); 
+	- fires a function everytime the DOM renders
+
+Example 2: EMPTY DEPENDENCY
+	useEffect(()=>{ ...Something }, []); 
+	- if empty dependency, it fires only once after rendered
+
+Example 3: WITH DEPENDENCY
+	useEffect(()=>{ ...Something }, [blogs]);
+	- runs once after rendered, or if dependency changes only
+
+Note:
+- when a useState is fired, it updates the DOM, meaning a useEffect can be applied
+	
+
+
+
+//JSON Server
+npx json-server --watch data/db.json --port 8000
+
+
+//JSON server endpoits
+1. /blogs 		GET 	-	Fetch all blogs
+2. /blogs/{id} 		GET 	-	Fetch a single blog
+3. /blogs 		POST 	-	Add a new blog
+4. /blogs/{id}		DELETE	-	Delete a new blog
+
+Note:
+- If you make POST, PUT, PATCH or DELETE requests, changes will be automatically and safely saved to db.json using lowdb.
+
+
+
+
+//CUSTOM HOOK
+STEP 1: - create a component
+	ex. useFetch.js
+STEP 2: - create a function that starts with the word "use", for it to work
+	ex. const useFetch() = ()=>{...Your Code}
+STEP 3: Export the function
+	ex. export default useFetch
+STEP 4: Import custom hook
+	ex. import useFetch from './useFetch';
+
+Note:
+- when creating a custom hook, create a function that has a use word as its name ex. (useFetch, useHover) otherwise it wont work
+
+
+
+
+
+//ROUTER
+npm install react-router-dom@5.2.0
+
+React Router - It enables the navigation among views of various components in a React Application, allows changing the browser URL, and keeps the UI in sync with the URL.
+
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+2 Types of Routes:
+	a. Browser Router - ex. http://localhost:3000/about
+	b. Hash Router - ex. http://localhost:3000/#about
+
+
+1. BrowserRouter 
+- is a router implementation that uses the HTML5 history API(pushState, replaceState and the popstate event) to keep your UI in sync with the URL. It is the parent component that is used to store all of the other components.
+ex.
+     <Router>
+      <div className="App">
+        <Navbar title={title}></Navbar>
+        <div className='content'>
+            <Switch>
+              <Route path="/">
+                <Home></Home>
+              </Route>
+            </Switch>
+        </div>
+      </div>
+    </Router>
+
+Note:
+- all components wrapped inside the BrowserRouter will have access to the Router.
+
+
+2. Switch or "Routes in v6" 
+- looks through all of its child routes and it displays the first one whose path matches the current URL.
+- it surrounds all of the route to make sure that only one route components can show in the browser at a time.
+ex. 
+	<Switch>
+           <Route path="/"> <Home/> </Route>
+	   <Route path="/about"> <About/> </Route>
+	   <Route path="/contact"> <Contact/> </Route>
+	</Switch>
+
+Note:
+- when routing, it reads the code from top to bottom and tries to find a match and stop. Meaning if it finds a path="/" it stops there.
+	
+- if you want to go to path="/create" but the first match it found is path="/", it will display the 	components in path="/" instead. To counter that, add "exact" so that react will find the exact match 	for that path.
+	ex.
+	<Route exact path="/"> <Home/> </Route>
+
+3. Route - use to render outputs/component in a certain route.
+	ex.
+	   <Route path="/"> <Home/> </Route>
+	   <Route path="/about"> <About/> </Route>
+	   <Route path="/contact"> <Contact/> </Route>
+
+4. Router Links - 
+import { Link, NavLink } from 'react-router-dom'
+
+<Link> - is an element that lets the user navigate to another page
+
+ex. 
+	<Link to='/about'> 
+            <h2> Go To About </h2>
+        </Link>
+
+Note:
+- using react links instead of anchor tags, will handle changes in the browser and wont cause it to reload.
+
+<NavLink> - A <NavLink> is a special kind of <Link> that knows whether or not it is "active"
+
+ex. 	<NavLink to='/' activeClassName='active'>
+            Home
+        </NavLink>
+
+Note:
+- Wherever you render a <Link> , an anchor ( <a> ) will be rendered in your HTML document.
+
+
+//ROUTE PARAMETER
+1. Add Route Parameter (id)
+ex.	<Route path="/blogs/:id">
+		<BlogDetails></BlogDetails>
+	</Route>
+
+2. Get Route Parameter
+import { useParams } from 'react-router-dom'
+
+useParams - hook returns an object of key/value pairs of the dynamic params from the current URL that were matched by the <Route path>.
+
+	//<Route path="/blogs/:id">
+
+ex.	const { id } = useParams(); //destructure id from route
+	<h2>Blog ID: {id} </h2> //display id
+
+
+//Pragmatic Redirects using useHistory hook or (useNavigate in v6)
+import { useHistory } from "react-router-dom";
+
+Methods:
+1. push(path, [state]): Pushes a new entry onto the history stack. Useful to redirect users to page
+2. replace(path, [state]): Replaces the current entry on the history stack
+3. go(n): Moves the pointer in the history stack by n entries
+4. goBack(): Equivalent to go(-1).
+5. goForward(): Equivalent to go(1).
+6. block(prompt): Blocks navigation. It takes a callback as a parameter and invokes it after the navigation is 7. blocked. Most useful when you want to first confirm if the user actually wants to leave the page.
+
+	ex. 
+		history = useHistory();
+		history.push('/home'),  go(-1) or goBack()
+
+
+//Create a 404 page
+- simply add a route, that contains the component for 404 as the last route.
+ 	<Route path="*">
+           <PageNotFound></PageNotFound>
+        </Route>
+              
+Note:
+- when react doesn't find a match, it will run this path instead
+

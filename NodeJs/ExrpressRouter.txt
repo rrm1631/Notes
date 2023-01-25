@@ -1,0 +1,10 @@
+Express Router 	- built in express, splits routes into different files and manage route in small groups that 		belong together
+		- makes app more modular and easier to update different parts of the app
+
+.Router(); -  is used when you want to create a new router object in your program to handle requests.
+
+//MVC (Model, View, Controller) - keeps code more modular, reusable, & easier to read
+Model - communicate with the database collections
+Cotroller - communicate with the a certain model to get data into a view
+View - renders data into a template and displays it in the browser
+

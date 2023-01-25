@@ -1,0 +1,55 @@
+//PROPS - are arguments passed into React components
+
+ex.
+	//APP COMPONENT
+	function App() {
+  		return(
+    		<>
+      			<Header text='Hello World!'/>  //text is a props
+      			<DynamicVariablesAndList/>
+    		</>
+  		)
+	}
+
+	//HEADER COMPONENT
+	export default function Header(props) { //add props as parameter to use props 
+  		return (
+    			<div className='container'>
+        			<h1>{props.text}</h1> //call props.attribute_name to display
+    			</div>
+  		)
+	}
+
+Note:
+- props are read-only, cannot be modified
+
+
+//DESTRUCTURING PROPS
+ex. 
+	export default function Header({text}) { //enclosed in curly braces the name of the props 
+  		return (
+    			<div className='container'>
+        			<h1>{text}</h1>
+    			</div>
+  		)
+	}
+
+
+//DEFAULT PROPS - allows you to set default values for the props argument.
+ex.
+
+	Header.defaultProps = {
+		text = 'Feedback UI';
+	}
+
+
+
+//PROP TYPES - simply a mechanism that ensures that the passed value is of the correct datatype.
+
+import PropTypes from 'prop-types'; // import prop-types to use
+
+ex.
+	Header.propTypes = {
+    		text: PropTypes
+	}
+

@@ -1,0 +1,16 @@
+Modules - single file or a collection of multiples files/folders.
+
+//How to Create Modules
+module.exports.identifier = data; - used to export data inside the module object property "exports:{}".
+
+//How to Load Modules
+require('path') - used to load node modules
+Ex.
+	require('./logger');
+
+//Built-in Node Modules
+1. path -  provides utilities for working with file and directory paths
+2. OS - provides operating system-related utility methods and properties
+3. fs (file system) - enables interacting with the file system 
+4. events
+5. HTTP

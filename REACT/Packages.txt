@@ -1,0 +1,22 @@
+//npm install uuid
+1. import {v4 as uuidv4} from 'uuid'; - used to generate unique id's
+
+//npm install react-router-dom@5.2.0
+1. import {BrowserRouter as Router, Route} from 'react-router-dom'; - enables the use of routes
+2. import {Link} from 'react-router-dom'; - enables the use of links
+3. import {NavLink} from 'react-router-dom';
+4. import {Switch} from 'react-router-dom';
+4. import {useParams} from 'react-router-dom';
+
+
+//npm install react-icons 
+1. import {FaTimes, FaQuestion, FaEdit} from 'react-icons/fa'; - used to import icon components
+
+//Context
+import { createContext } from "react";
+import { useContext } from "react";
+import { useEffect } from "react";
+
+
+//JSON server
+npm install -g json-server

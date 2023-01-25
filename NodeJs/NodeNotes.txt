@@ -1,0 +1,247 @@
+//Global Objects 
+global - similar to the window object, in node it contains several methods and properties attached to it
+
+
+//How to get file directory
+1. __dirname - gets the path of the current folder the file currently.
+ex. ("D:\Users\User\Documents\VisualStudioCode\Node")
+
+2. __filename - get the path of the folder with the filename.
+ex. ("D:\Users\User\Documents\VisualStudioCode\Node\global.js")
+
+
+Note: 
+- useful when trying to get the current directory of the file, primarily when trying to interact with differnt files in order to establish a connection between each file.
+
+
+//Modules and Require
+Modules - single file or a collection of multiples files/folders.
+
+//How to export modules
+module.export
+	- used to export data inside the module object property "exports:{}".
+	- it returns the object or element assigned when it is called using require();
+
+Syntax:
+	module.exports = data; //returns the data
+	or
+	module.exports.identifier = data; //return the data and assigns an identifier to the data
+	or
+	module.exports = { //returns multiple objects/elements
+		identifier: data,
+		identifier: data
+		} 
+
+
+	
+//How to Load or Import Modules
+require('path') - used to load node modules into other files, it automatically looks for the file and runs it.
+Ex.
+	const abc = require('./people');
+	or
+	const {people, ages} = require('./people'); //destructure, when importing multiple modules
+	
+
+
+
+//Core Modules or Built-in Node Modules
+1. os - provides operating system-related utility methods and properties
+Syntax: const os = require('os');
+
+os.platform() - returns the current platform the OS is running
+os.homedir() - returns the home directory
+
+
+
+
+
+
+2. fs (file system) - enables interacting with the file system 
+Syntax: const fs = require('fs');
+
+//Read Files
+fs.readFile('filePath', callback(err, data){}) - fires an asynchronous functions, that loads data
+ex.
+	fs.readFile('./docs/blog1.txt', (error, data) => {
+    	if(error){
+        	console.log(error);
+    	}
+    		console.log(data.toString()); //if you want readable data instaed of a buffer
+	});
+
+
+//Write Files
+fs.writeFile('filePath', 'textToWrite', callback(){})
+ex. 
+	fs.writeFile('./docs/blog1.txt',  "Hello World!", ()=> {
+    		console.log('file is written');
+	});
+
+Note:
+- if file doesn't exist, it automatically creates the file
+
+
+
+//Directories
+fs.mkDir('./assets', callback(err){})
+ex.
+	fs.mkdir("./assets", (err)=>{//creates folder
+        if(error){
+            console.log(err);
+        }
+    
+            console.log("Folder Created");
+    	});
+
+
+fs.existSync('filePath') - used to check the directory exist
+fs.rmDir('filePath', callback(err){}) - used to remove directory
+
+
+
+
+//Delete File
+fs.unlink('filePath', callback(err){})
+
+ex.
+	if(fs.existsSync('./docs/deleteme.txt')){//check if file exist
+    	    fs.unlink('./docs/deleteme.txt', (error)=>{
+        	if(error){
+            	   console.log(error);
+        	}
+
+        	 console.log("File Deleted");
+    	     });	
+	} 
+
+
+//Streams and Buffers
+streams - a continuous flow of data, it allows data to be used before data is fully read.
+buffer - is temporary storage area used to store data temporarily.
+
+Syntax: 
+	const readStream = fs.createReadStream('filePath'); //where to read data from
+	
+	const writeStream = fs.createWriteStream('filePath'); //writes chucks of data into the file specified
+	
+	readStream.on('data', (chunk) ==> { //eventListener, listen for data coming in
+		console.log(chunk.toString); //logs a bit of data at a time
+		writeStream.write(chuck); //passes the data to be write
+	});
+ 
+.toString - used to make buffer codes into readable format
+readStream.pipe(writeStream) - useful way to read and write data in a stream, basically a shortcut
+
+Note:
+- example idea is when streaming videos, little bits of data are sent to the browser so you can start watching videos without having to wait for the whole video to load initially.
+
+
+<!-- END OF FILE SYSTEM MODULE -->
+
+
+
+
+
+
+//Client and Server
+3. HTTP Module - used to create a server that is basically used to manage the backend of the website
+
+require('http') - needed to use http server and client
+
+.createServer(callback(request, response)) - used to create a server
+ex.
+	const server = http.createServer((req, res)=>{
+   		console.log('request made');
+	});
+
+request - an object that is used to return information about the url
+1. req.url() - returns the url ex. /homepage
+2. req.method - returns the method used ex. GET
+
+response - an  object used to send a response
+1. res.setHeader() - used to set header 
+ex. 
+- res.setHeader('Content-Type', 'text/plain') //expects plain text as a response to the browser
+- res.setHeader('Content-Type', 'text/html') //expects html as a response to the browser
+
+2. res.write() - used to send data to the browser
+ex. 
+- res.write('Hello World');  //sends a text into the browser
+- res.write('<p>Hello World</p>');  //sends a htmlinto the browser
+
+3. res.end() - used to end the response and send it back to the browser
+4. res.statusCode - used to set the status code of the response
+
+.listen(portNumber, 'hostname', callback()); - used to listen for request on a certain host/port
+ex.
+	server.listen(3000, 'localhost', ()=>{
+    		console.log('listenig for req on port 3000');
+	}); 	
+
+
+localhost (127.0.0.1) - is like a domain name on the web, act as the host for your website that listen for 	request that comes from your computer.
+
+portnumber (3000 for localhost development) - used to represent a gateway/channel where the server should 	communicate to recieve/send data.
+
+Status Codes:
+200 - OK
+301 - Resource Moved
+404 - Not found
+500 - internal server error
+
+//redirect (301) - when a location is moved, this will automatically redirect to the new location
+syntax: res.setHeader('Location', '/newlocation');
+
+
+
+
+
+//How to install Packages
+npm install packageName - used to install a package
+npm install -g packageName - install package globally 
+npm install --save packageName - install package locally, as local dependencies
+
+
+//NPM PACKAGES
+1. nodemon - used to automatically restarts the server when changes occurs, live-reload server
+2. lodash
+3. express - useful for creating node websites
+
+Note:
+- packages are json files and keeps tracks of packages installed locally
+- when installing a local package into a project, it creates a node_modules folder
+
+//How to use nodemon
+nodemon filename - runs the file using the nodemon package
+
+
+//Important
+package.json - initialized using npm init, keeps tract of project dependencies
+project dependencies - packages installed locally into the project
+node_modules fldr - contains all the files/folder for a certain package and each dependencies for that package
+dependencies - using npm install, it automatically looks in the package.json file for each dependencies and 	automatically installs the necessary dependencies for that particular package.
+
+
+
+
+
+
+
+Commands:
+npm init - used to initialize node package manager and a package.json file
+
+node filename - used to call a module in the terminal or simply runs the file
+
+modules - Consider modules to be the same as JavaScript libraries. A set of functions you want to include in your application.
+
+require() - Used to include/import modules (ex. const myLocalModule = require('./path/myLocalModule');)
+
+module.exports - used to manually export data or properties from a module (ex. module.exports = object/var)
+
+Stream - used to get small data at a time that could be used right away while file is still being read
+
+ 
+
+Note:
+- in node, each file is treated as a seperate module
+- when code gets to large, node may take a while to fully read said file. Using stream will allow data to be used while file is still being read 

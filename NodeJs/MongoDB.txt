@@ -1,0 +1,157 @@
+SQL vs NoSQL
+SQL - uses tables, rows, column
+NoSQL - uses Collection, Documents
+
+//SIMILARITIES
+Collections 	== Tables
+Documents 	== Records
+
+
+//MongoDB Atlas
+Account: gmail
+dbusername: dbraph
+dbpassword: dbraph123
+
+//Connect to application
+mongodb+srv://<username>:<password>@nodetutorial.wc0ywmy.mongodb.net/<collection>?retryWrites=true&w=majority
+
+//Mongoose
+- install using npm install mongoose
+- const mongoose = require('mongoose');
+- Mongoose is an ODM library - Object Document Mapping Library
+- wraps the standard mongoDB api, and provides an easier way to connect and communicate with the db.
+- is asynchronous, returns a promise
+- uses schemas and models
+
+moongoose.connect('uri') - used to establish a connection string with the database
+
+//Schemas & Models
+Schemas - defines the structure of a type of data/document
+	- decribes the properties and property types
+
+Ex.
+	User Schema:
+	- name (string), required
+	- age (number)
+	- bio (string), required
+
+	Blog Schema
+	- title (string), required
+	- snippet (string), required
+	- body (string), required
+
+Models 	- allows us to communicate with database collections
+	- responsible for creating and reading documents from the underlying MongoDB database.
+	- are fancy constructors compiled from Schema
+	- when declared, it automatically looks for the plural, lowercased version of your model name.
+
+ex. 
+	const Blog = mongoose.model('Blog', blogSchema); //checks the database for a document named "blogs"
+
+
+
+//Getting and Saving Data
+- import the model 
+	ex. "const Blog = require('./models/blogs');"
+
+
+1. Saving Data
+- create an instance of the model and pass in an object that contains a value of each property
+	ex.
+	const blog = new Blog({
+          title: 'New Blog',
+          snippet: 'about my new blog',
+          body: 'more about my new blog'
+    	});
+
+- save data to the database using .save();
+	ex. blog.save();
+
+- once .save() is fired, it returns a promise
+
+2. Getting Data
+Blog - is the Blog model imported
+Blog.find() - is used to find particular data from the MongoDB database
+Blog.findById() - is used to find a single document by its _id field
+Blog.findByIdAndDelete() - is used to find and delete a document
+Blog.finde().sort() - is used to sort out the documents, from a collection, using the MongoDB query system
+
+
+
+//Request Types
+GET - request to get a resource
+POST - request to create new data
+DELETE - request to delete data
+PUT - request to update data
+
+
+
+//POST REQUEST
+app.post() - used to handle post request
+
+app.use(express.urlencoded()) 
+- built-in middleware function in Express. It parses incoming requests with urlencoded 
+- it basically takes all incoming request and parses into an object that can be used in a request object
+- allows you to use methods such as req.body
+
+req.body - stores user input information and sends it to your Express server
+
+ex.
+	var express = require('express');
+	var app = express();
+
+	app.use(express.urlencoded({extended:false}));
+ 
+	app.post('/', function (req, res) {
+    		console.log(req.body);
+    		res.end();
+	});
+
+//SAVE POST DATA
+const blog = new Blog(req.body);
+
+ blog.save()
+        .then((result)=> {
+            res.redirect('/blogs');
+        }).catch((error)=> console.log(error));
+	
+
+
+
+
+//Route Parameters - are parts of the route that may change value.
+	ex. localhost:3000/blogs/:id
+
+req.params.parameter - used to get the url parameter
+	ex. const id = req.params.id; 
+
+
+
+
+
+//GET DATA USING ID
+app.get('/blogs/:id', (req, res)=>{
+    const id = req.params.id;
+
+    Blog.findById(id)
+        .then((result)=> res.render('details', {title: 'Blog Details', blog: result}))
+        .catch((error)=> console.log(error));
+});
+
+
+
+
+//DELETE DATA
+app.delete('/blogs/:id', (req, res)=>{
+    const id = req.params.id;
+
+    Blog.findByIdAndDelete(id);
+});
+
+
+
+
+
+
+
+

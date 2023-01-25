@@ -1,0 +1,30 @@
+COMMANDS:
+
+npx create-react-app myproject - installs create-react-app package and create react application
+
+npm start - runs react project in local server
+ctrl + c - stop server from running
+npm install shortid - install the shortid package (used to generate random key:id)
+
+
+
+
+
+NOTES:
+cd projectname - opens the folder name
+npx - package runner when node is installed
+
+components - is a js function that simply returns some html
+props - are objects that gets pass to a function/class component (read only/ immutable)
+state - similar to props, but is dynamic and can only be used inside a component.
+setState - used to change the value of a state object
+element variable - is simply a variable use to store jsx elements
+map - lets you manipulate the items in an array by iterating and accessing individual item
+creating forms with react - inputs requires an onChange method to dynamically change its value
+
+event.preventDefault(); //prevents the page from reloading on form submit button
+inline style - using ("") inline styles in jsx is not allowed, instead use objects ex. style={borderred}
+
+fragments - usually used in tables when adding columns, allows component to return elements without a div
+memos - prevents rerendering of child component if not required
+portals - allows you to add elements to a div other than the root div, used in adding modals

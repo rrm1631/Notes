@@ -1,0 +1,31 @@
+//STATES - allows us to manage changing data in an application.
+
+import { useState } from 'react';  //import useState to use
+
+useState(); -  is a Hook that allows you to have state variables in functional components. 	
+syntax:
+	const [state_name, setState/FunctionName] = useState(defaultValue); 
+	//the setState/FunctionName parameter is used to update the state.
+
+ex.
+	const [rating, setRating] = useState(5);
+
+setState(); - used to change or update a state.
+ex.
+	setRating(10); //this changes the prev value to 10
+
+	setRating((prev)=>{ //callback funtion to access the prev value
+		return prev + 1 //add 1 to prev value
+	})
+
+//State Types
+1. Component Level State - is data that is associated with one specific component.
+	
+
+2. App or Global Level State
+
+
+Note:
+- state changes can be asynchronous
+- can be modified using this.setState
+- locally scoped, can only be used inside the component declared on
