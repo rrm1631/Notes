@@ -1,0 +1,107 @@
+Object - is a unique entity that contains properties and methods.
+Classes - also known as blueprints of an Object.
+
+
+
+//Constructor
+Constructor - is a method called during the instantiation of the object, and is used to assign value to the 	property.
+
+this - used to refer to the new object and it becomes the current instance object.
+
+instance - refers to the individual objects that was created by a particular class
+
+
+ex. 
+	class Person {
+  		constructor(name) { //CONSTRUCTOR
+    			this.name = name;
+  		}
+	
+  		introduce() {
+    			console.log(`Hello, my name is ${this.name}`);
+  		}
+	}
+
+	const p1 = new Person("Mario"); //INSTANCE
+
+
+
+
+
+
+//Method Chaining
+return this - using return this will return the instance which will allow you to chain multiple methods, using 	dot notation.
+
+ex.
+	i=0;
+	method1{
+		i++;
+		return this;
+	}
+	
+	method2{
+		console.log(i);
+	}
+	
+	instance.method1().method2();
+
+
+
+
+
+
+//Class Inheritance
+Inheritance - It is a concept in which some properties and methods of an Object are being used by another Object.
+
+1.subclass - the class that inherits the attributes and methods (child)
+2.superclass - the class where the attributes and methods is inherited (parent)
+
+extends - used after the class name and indicates that a certain class will inherit from antoher class
+ex: 
+	class Admin extends Users{}
+
+super() method - refers to the parent class constructor. (required)
+
+Note:
+- if the subclass doesn't have a constructor defined, it will automatically call the superclass constructor
+
+
+
+
+
+
+//Prototypes - contains all the methods for that object type
+ex.
+	Date prototype - getDay(), getMonth, etc..
+	Array prototype - sort(), filter(), etc..
+
+
+
+
+
+
+
+getters & setters - are class methods used to retrieve/set values of an object inside a private class
+
+Access Modifiers
+1. public - makes objects accessible outside the class (anywhere)
+2. private - makes objects accessible inside the specific class declared
+3. protected - similar to private, but any class that extends another class inherits its properties as well
+
+
+
+
+Encapsulation - The process of wrapping properties and functions within a single unit is known as encapsulation. 
+
+Abstraction - means displaying only essential information and hiding the details.
+
+
+
+
+
+
+
+
+
+
+

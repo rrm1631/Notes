@@ -1,0 +1,216 @@
+Javascript Data Types
+1. Number - (ex. let length = 16;  ) 
+2. String - (ex. let lastName = "Johnson";  ) 
+3. Array - (ex. const cars = ["Saab", "Volvo", "BMW"];	) 
+4. Boolean - (ex. let z = true;) 
+5. Object - (ex. let x = {firstName:"John", lastName:"Doe"}; ) 
+
+typeof()  - returns the type of a variable or an expression
+length - returns the length of a string.
+
+
+//OTHERS
+1. Array.from(htmlCollection) - creates a new, shallow-copied Array instance from an iterable or array-like 				object.
+2. setInterval(function, milliseconds) - calls a function at specified intervals (in milliseconds).
+3. setTimeout(function, milliseconds) -  calls a function once after a number of milliseconds.
+4. clearInterval() - clears a timer set with the setInterval().
+5. clearTimeout() - clears a timer set with the setTimeout().
+
+
+//String Methods
+1. Fullname.toUpperCase() - method converts a string to uppercase letters.
+2. Fullname.toLowerCase() - method converts a string to lowercase letters.
+3. Email.indexOf('@') - returns the index position of the first occurrence of a value in a string.
+4. Email.includes('@') - returns true if a string contains a specified string.
+5. name.slice(0,10) - extracts a part of a string. "arguments(from, to)".
+6. name.replace('m', 'w') - returns a new string with the value(s) replaced. "ex. Mario -> Wario "
+7. element.trim() - removes any whitespace in the string
+8. element.length - property returns the length of a string.
+
+
+//Form Methods
+1. form.reset() - resets all the input fields inside a form
+
+
+
+//Array Methods
+1. array.join(,); - joins all the elements inside the array into a single string, seperated by a (,);
+2. array.indexOf() - returns the index position of the first occurrence of a value in the array.
+3. array.concat(array) - combines the values of two arrays
+4. array.push('value') - pushes a value inside an array
+5. array.pop() - removes the end index of the array 
+6. array.filter(function()) - iterates an array and creates a new array filled with elements that pass a test 				provided by a callback function.
+7.array.map() - iterates an array and  creates a new array from callback function and pushes an updated value			for each item in the new array
+8.array.reduce() - returns a single value: the function's accumulated result
+9.array.find() - returns the value of the first element that passes a test.
+10. array.sort() - sorts the elements of an array. Note: may be destructive, it overwrites the original array.
+11. array.reverse() - basically reverse the order in the array.
+
+callback functions - are functions that are passed as an argument inside another function/method
+methods - are basically function, but uses dot notation when called, mostly used in objects
+
+
+//Math Objects
+1.Math.PI - returns PI
+2.Math.round() - returns x rounded to its nearest integer
+3.Math.floor() - Returns x rounded down to its nearest integer
+4.Math.ceil() -  Returns x rounded up to its nearest integer
+5.Math.random() - returns a random number
+
+
+
+
+
+
+
+
+
+
+//DOM Methods
+1.document.getElementById(id) - Find an element by element id
+2.document.getElementsByTagName(name) - Find elements by tag name
+3.document.getElementsByClassName(name) - Find elements by class name
+4.document.querySelector - Returns the first element that is a descendant of node that matches selectors
+5.document.querySelectorAll - returns all elements that matches a CSS selector
+
+//DOM Properties
+element.innerText - Get the inner text of an element
+''.innerHTML - Get the HTML content of an element
+''.textContent - similar to innerText, but also gets the hidden text inside the element
+''.getAttribute('attr') - Get the value of the target attribute of an <a> element: class, href, id, name, etc.
+''.setAttribute('attribute', 'something to add') - method sets a new value to an attribute.
+''.style.property - use to change the style of an HTML element. ex. title.style.color = red;
+
+element.classList - returns the CSS classnames of an element.
+element.classList.add('classname') - add a class to the element
+element.classList.remove('classname') - remove a class to the element
+element.classList.toggle('classname') - Toggle class on and off
+
+
+//Parent Children Relationship
+element.children - gets all the elements inside the parent element
+element.parentElement - returns the parent element of the children
+
+
+
+
+
+
+
+
+
+//EventListener
+element.addEventListener('click', (events)=>{}) - attaches an event handler to the specified element.
+
+//event Handler
+1. click
+2. wheel
+3. mousemove
+4. mouseover
+5. mouseout
+
+//events
+event.target - gets the element on which the event originally occurred, usefull for finding out what element is click.
+
+
+//Usefull Methods
+e.target.remove() - removes an element (or node) from the document.
+e.target.classlist.contains() - useful to check if the classlist of the element contains a specific class
+
+
+
+
+
+
+
+//FORM EVENTS
+.preventDefault(); - prevents the default action that belongs to the event.
+.value - sets or returns the value of the value attribute of a text field.
+
+//Regex - Regular Expressions
+^ - start
+$ - end
+[a-z] - character set
+{1,10} - length
+. - any character
+
+ex. [a-zA-Z0-9]{1-10} - accepts small & capital letters, and numbers from 0-9, upto 1-10 characters long
+important: 
+1.regex are contained in /[a-z]/
+2./^[a-z]$/ - use ^ and $ in order to check if the string being check from start to end
+3. if ^ and $ is not included as long as the string is being check is there it will always return true
+	ex. pattern /[a-z]/
+	string: @123thestring231 = true
+
+.test(string) - use to find a match in a string (return true or false)
+.search() - return the position of the character that first matched, else returns -1 for false
+
+
+NOTES:
+Event Buibbling - It happens when an element receives an event, and that event bubbles up (or you can say is transmitted or propagated) to its parent
+
+
+
+
+
+
+
+//Local Storage
+local storage -  allows you to save key/value pairs in the browser. The data is not deleted when the browser 			is closed, and are available for future sessions.
+
+localStorage.setItem(key, value); - used to save data to local storage
+let lastname = localStorage.getItem(key); - used to Read Data from Local Storage
+localStorage.removeItem(key); - used to Remove Data from Local Storage
+localStorage.clear(); - used to remove all or clear local storage
+
+Note:
+1.storing data in local storage sets all values as a string
+
+
+
+
+
+
+
+
+//MORE ES6
+1. rest parameter - allows a function to accept an indefinite number of arguments as an array, used when you 		don't know how many parameter you want to add.
+
+Ex. function f(...saram){console.log(param)}
+	const result = f(1,2,3,4,5);
+	output: Array[1,2,3,4,5];
+
+Note:
+- rest, can only have one rest parameter
+- denoted by (...)
+
+
+
+2. spread parameter -  helps the iterable objects "arrays" to expand into individual elements. useful to 		quickly copy all or part of an existing array or object into another array or object.
+
+Note:
+- also denoted by (...)
+
+
+
+3. Sets - A set is a collection of items which are unique, basically eliminates duplicates in array
+Syntax: var set1 = new Set(array)
+
+Ex. 
+	var set3 = new Set([10, 20, 30, 30, 40, 40]);
+	console.log(set3);
+	Output: [10, 20, 30, 40];
+
+//Set methods
+.add() - adds a new element to the set
+.delete() - removes the element inside the set
+.size - return the size or length of the set
+.has() - return t/f, checks if the set contains a certain value
+.clear() - removes all elements inside the set
+
+Note:
+- sets has different methods/properties from an array. Ex.(.length, .push(), etc..) cannot be used in a Set
+- sets are iterable, yes you can use .forEach()
+
+
+

@@ -1,0 +1,29 @@
+//SQL vs NoSQL
+SQL database - uses tables, rows, and columns
+NoSQL database - uses collections, documents, and properties
+
+Documents - represents single records, similar to javascript objects that has key value pairs
+db.collection(collectionName) - used to get a specific collection 
+.add(object) - used to add a new document to a collection
+.get() - used to get a reference from the collection
+.delete() - used to delete a document from the collection
+
+
+//Real-time listeners - used to listen for changes in the collection, and at the same time updates the UI
+.onSnapshot() - fires a callback function everytime there is a change in the database
+.docChanges() - returns an array of the document changes
+.remove() - used to remove documents
+
+.where(condition) - is used to get a certain document from a certain collection where a certain condition is 		true, has three parameters(property, logical condition, value).
+ex.
+	 db.collection('chats').where('room', '==', this.room)
+		
+
+
+.orderBy('property') - used to sort each data based on the property selected
+
+
+
+
+
+

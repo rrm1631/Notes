@@ -1,0 +1,120 @@
+const xhttp = new XMLHttpRequest(); - XMLHttpRequest object is used to exchange data with a server.
+
+//Type of Http Request Methods
+1. GET
+2. POST
+3. PUT
+4. DELETE
+
+//How to Send a Request To a Server
+xhttp.open(method, filepath/url, async); - used to set up the request
+xhttp.send(); - Sends the request to the server (used for GET)
+xhttp.send(string) - Sends the request to the server (used for POST)
+
+
+ex.
+xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    document.getElementById("demo").innerHTML = this.responseText;
+  }
+};
+xhttp.open("GET", "ajax_info.txt", true);
+xhttp.send();
+
+
+
+
+//XMLHttpRequest Object Properties
+1. onreadystatechange - Defines a function to be called when the readyState property changes
+2. readyState - Holds the status of the XMLHttpRequest.
+	0: request not initialized (UNSENT)
+	1: server connection established (OPENED)
+	2: request received (HEADERS_RECEIVED)
+	3: processing request (LOADING)
+	4: request finished and response is ready (DONE)
+
+3. responseText - Returns the response data as a string, the actual data to be received
+4. responseXML - Returns the response data as XML data
+5. status - Returns the status-number of a request.
+	200: "OK"
+	403: "Forbidden"
+	404: "Not Found"
+
+6. statusText - Returns the status-text (e.g. "OK" or "Not Found")
+
+
+
+
+//JSON DATA
+json.parse() - used to convert json data in javascript objects
+json.stringify() - Convert a JavaScript object into a json string //note: I used this in LocalStorage folder
+
+
+
+
+
+//Callback hell - Multiple callback functions would create callback hell that leads to unmanageable code. Also it is not easy for any user to handle multiple callbacks at the same time.
+
+ex. 
+getTodos("todos/raph.json", (err, data)=>{ //added json path
+    console.log(data);
+
+    getTodos("todos/mario.json", (err, data)=>{ 
+        console.log(data);
+
+        getTodos("todos/luigi.json", (err, data)=>{ 
+            console.log(data);
+        });
+    });
+});
+
+
+
+
+
+//Promises - learn more (https://www.geeksforgeeks.org/javascript-promises/)
+Promises - are used to handle asynchronous operations in JavaScript. They are easy to manage when dealing with multiple asynchronous operations where callbacks can create callback hell leading to unmanageable code. 
+
+1. Promise.then(resolve, reject) - takes two arguments, a callback for success and another for failure
+
+syntax:
+	.then(function(result){
+        	//handle success
+    	}, function(error){
+       	 	//handle error
+    	})
+
+
+2. .catch() - is invoked when a promise is either rejected or some error has occurred in execution. It is used 		as an Error Handler whenever at any step there is a chance of getting an error.
+
+syntax:
+	.catch(function(error){
+        	//handle error
+    	})
+
+
+NOTE: 
+1. When trying to sequentially get data one after another, its better practice to use promises.
+- promises takes two arguments, a callback for success and another for failure, and fires either one depending on the condition.
+
+
+
+
+
+
+//Async & Await
+Async - It simply allows us to write promises based code as if it was asynchronous and it checks that we are 	not breaking the execution thread. RETURNS A PROMISE.
+
+Await - Await function is used to wait for the promise. It could be used within the async block only. It makes 	the code wait until the promise returns a result. It only makes the async block wait.
+
+
+Syntax:
+	const getData = async() => {
+   	 	var y = await "Hello World";
+    		console.log(y);
+	}
+ 
+	console.log(1);
+	getData(); //non blocking, it will fire once its done loading
+	console.log(2);
+

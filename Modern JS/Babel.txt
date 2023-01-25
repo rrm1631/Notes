@@ -1,0 +1,81 @@
+//Babel  Link: https://babeljs.io/
+- will allow modern javascript to work on all browsers even browsers that dont support modern features
+- this will convert modern codes into older ones for older browsers that doesn't support modern features
+
+
+
+//How to setup babel
+1. initialize node, using "npm init" in the terminal
+	- this will create a package.json file
+
+2. install babel package, using "npm install @babel/core @babel/cli --save-dev" 
+	- this will install the core and cli packages of babel, and save as a developer dependency inside the 		package.json file.
+
+3. install babel preset,  using "npm install @babel/preset-env --save-dev"
+	- another package required used to support certain language features needed to convert 	codes 			correctly.
+
+4.create a new file called ".babelrc"
+	- file is used to define the preset for babel
+ex.
+	{
+		"presets" : ["@babel/prest-env"]
+	}
+
+
+
+
+
+BABEL COMMANDS:
+
+//Convert file and Save Output
+1. node_modules/.bin/babel fileToConvert -o fileToSaveConvert
+	- after the babel directory, you pass in the file you want to convert and the file you want to save 	the output using "-o" for output 
+
+ex.	
+	node_modules/.bin/babel before.js -o after.js
+
+Note:
+- in order to use babel commands, you need to navigate to the babel directory in the terminal
+(path: node_modules/.bin/babel) - this will access the babel directory
+
+
+
+
+
+
+
+//package.json
+1.scripts - allows users to quickly run scripts by referencing the script ran in the terminal
+	ex. 
+		"scripts":{
+			"babel" : node_modules/.bin/babel before.js -o after.js
+		}
+
+		inside the terminal:
+		npm run babel
+Note:
+- adding -w for watch, will allow the script to automatically run when changes occur
+	ex. "babel" : node_modules/.bin/babel before.js -w -o after.js
+- run (npm run babel) just incase if it doesn't work
+
+
+
+<---IMPORTANT--->
+//
+
+
+
+
+//ERROR WHEN CONVERTING
+node_modules\.bin\babel.ps1 cannot be loaded because running scripts is disabled on this system.
+
+- if you encounter this, under the powershell terminal, check your execution property if its restricted using
+(Get-ExecutionPolicy).
+
+- To change your execution policy:
+(Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned)
+p.s just change it back to restricted later after for security purposes
+
+reference: 
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.3&viewFallbackFrom=powershell-7.1
+

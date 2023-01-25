@@ -1,0 +1,55 @@
+//Webpack
+- webpack is a module bundler
+- works well with babel
+- used to split codes into modules
+- used to import/export modules into a certain file.
+
+
+//how to setup Webpack
+1. create a file under the root folder called webpack.config.js
+	- inside webpack.config.js is where all the webpack setup is specified
+	
+module.exports = {}; - is used to export webpack configuration objects, that will be processed when the 	webpack cmd is initialized.
+
+2. Inside module.exports = {}, add an entry and output property to define the file being imported and 	exported.
+
+__dirname - is used to get the absolute path of the file 
+
+
+3. Install Webpack packages, core and cli 
+	- using "npm install webpack webpack-cli --save-dev"
+
+
+
+Webpack Commands:
+1. node_modules/.bin/webpack - will automatically look for the webpack file and run it
+
+
+
+//How to import/export
+import 'file' - runs the file, but doesn't share/inherits its properties/functionalities
+syntax: 
+	import './file';	
+
+export - by adding export to variable/function, you can call that object using the import statement.
+Syntax: 
+	export const greet(name){}; //adding export to each item
+	or
+	export {greet, addTitle, introduce} //export multiple items in one go, declared at the bottom
+
+Ex. import{greet, addTitle, styleBody} from './dom';
+
+
+
+
+
+
+//Using Babel & Webpack
+1. install babel loader, using "npm install babel-loader --save-dev"  
+
+
+
+
+
+
+
