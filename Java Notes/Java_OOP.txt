@@ -1,0 +1,196 @@
+Instanciation - process of creating an object using a class
+syntax: ClassName identifier new ClassName
+
+objects - created by instantiating a class
+Attributes - are the global variables inside the class
+
+//Read and Write Attributes
+Writiing Attributes - identifier.attribute = value;
+Reading Attributes - System.out.println(identifier.attribute)
+
+//Constructor
+Contructor - method called when you instantiate a class. Used to initialize the attributes of an object.
+	Constructor method are named after their class name.
+
+this - refers to the class itself, enables users to access global variable inside the class if you have the 	same variable names in a parameter. 
+
+
+Ex. 
+
+public class Product { //CLASS
+	
+	String name;
+	double price;
+	
+	public Product(String name, double price) { //CONSTRUCTOR
+		
+		this.name = name; 
+		this.price = price;
+		
+		System.out.println("Product" + name + "Created");
+	}
+	
+}
+
+Note:
+1. If the class is in the same package no need to import that class to instanciate 
+2. Constructor method are named after their class name
+
+
+Encapsulation - used to hide data from direct access using modifiers, mostly used in OOP
+//Modifiers
+1. public - makes objects accessible outside the class (anywhere)
+2. private - makes objects accessible inside the specific class declared
+3. protected - it can only be accessed by class in the same package and subclasses
+
+
+GETTERS & SETTERS - are methods used to get and set encapsulated values
+
+
+
+///INHERITANCE - used to inherit the attributes and methods from one class to another
+1.Superclass - the class where the attributes and methods is inherited (parent)
+2.Subclass - the class that inherits the attributes and methods (child)
+
+extends - used after the class name and indicates that a certain class will inherit from antoher class
+
+ex.
+modifier class subclass extends superclass{
+	//attributes & methods
+}
+
+overriding constructor - when inheriting a superclass w/ a constructor, it is required to call its constructor
+ex.
+
+public subclass(arguments){ //subclass constructor
+	super(arguments);
+	//attributes..
+}
+
+super() - only used in a subclass, used to call their superclass to gain access to its constructor, and its 		attributes/methods.
+
+
+//overriding methods from superclass
+super.superclass_methodname() - used to retain the functionality from the superclass, this will call the 	method from the superclass.
+
+ex.
+superclass_methodname(){
+	super.superclass_methodname();
+	//add new attributes or methods
+}
+
+
+
+//Polymorphism 	- is an oop technique that utilizes inheritance to create one class and make several classes 		that inherits from that class.
+		- basically a class that has multiple variant
+
+
+
+
+//ABSTRACTION - is an oop technique that hides certain details and only shows the important information.
+1. Abstract Classes (uses abstract modifiers)
+
+abstract class - cannot be instantiated, to access it you need to inherit if from another class
+
+abstract methods - Can only be declared inside an abstract class, it is a method w/o a body and needs to be overriden in the subclass of the  abstract class.
+
+Note:
+- you can only declare an abstract method inside an abstract class
+- you need to assign the method as an abstract, to force a inheritted method to be override
+
+
+ex.
+	public abstract class Animal { //abstract class
+		abstract void sayHello(); //abstract method
+	}
+
+
+
+2. Interfaces (uses implements keyword)
+interface - is a full Abstract Class that is implemented in other classes.
+
+	ex.
+		public interface Animal(){
+			void makeSound(); //abstract by default
+		}
+
+implements keyword - used after the class name to implement an interface in that certain class.
+default - used to create a static method with body
+	ex.
+		public class Dog implements Animal{} //implements the class animal
+
+Note: 
+- any method that you declared would be an abstract method by default.
+- any varialbes declared would be static and final (hindi na pwedeng baguhin)
+- implemented interface requires the class to override every method inside the interface
+
+
+
+
+
+
+//ARRAY OF OBJECTS
+syntax: className identifier[] = new className[size];
+	ex. Employee employees[] = new Employee[2];
+
+//Storing objects in array
+Syntax: identifier[index] = new ClassName(constructor);
+	ex. employees[0] = new Employee("Mario", "Bro", "Plumber");
+
+//Accessing Objects inside Array
+	ex. employees[0].method/var;
+
+//ENUMS - a special class that contains a collection of constant values
+
+Note:
+- enums can represent words as objects
+- enums are constant values
+- enums constructors are private 
+
+
+
+
+
+//ARRAY LIST - is a resizable array from java.util package.
+Syntax:
+	ArrayList<DataType> identifier = new ArrayList<DataType>();
+
+Adding Values:
+	identifier.add(value);
+
+Reading Values:
+	identifier.get(index);
+
+Update Values:
+	identifier.set(index, value);
+
+Delete Values:
+	identifier.remove(index); - removes specific index
+	identifier.clear(); - remove all items
+
+identifier.size() - returns the number of items in the arraylist.
+
+
+Note:
+- ArrayList doesn't use Square Brackets
+- Uses a non primitive data type
+
+
+//PRIMITIVE DATA TYPE
+1.int
+2.float
+3.boolean
+4.char
+5.double
+
+//NON PRIMITIVE DATA TYPE
+1.String
+2.class objects
+
+//WRAPPER CLASS
+1.Integer
+2.Float
+3.Boolean
+4.Character
+5.Double
+

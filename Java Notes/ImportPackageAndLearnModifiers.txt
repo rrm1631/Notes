@@ -1,0 +1,39 @@
+//IMPORTING PACKAGES
+package - folder in the directory used to store related codes in the same directory 
+
+1. IMPORT SPECIFIC CLASS
+Syntax: import packagename.classname
+
+2. IMPORT WHOLE PACKAGE
+Syntax: import packagename.*
+
+//Class Instantiation - the process of creating an instance of a class so we can use it on our program.
+Syntax: Classname identifier = new Classname();
+	ex. Arithmetic a = new Arithmetic();
+
+
+//Access Modifiers for Classes
+default 	- class can only be accessed by classes inside the same package 
+public 		- class can be accessed anywhere as it is imported
+
+
+//Access Modifiers for Methods and Variables
+default 	- class can only be accessed by classes inside the same package 
+public 		- class can be accessed anywhere as it is imported
+private 	- it can only be accessed inside its own class
+protected 	- it can only be accessed by class in the same package and subclasses
+
+Note:
+- if you did not declare the modifier for the class or method, it is set to default
+
+
+//Non-Access Modifiers - used to add other functionalities for class,var,methods. Used for specific situations
+1.final 	- the class cannot be inherited by other classes
+2.abstract 	- the class cannot be used to instantiate objects.
+		- abstact class can be accessed only by inheriting it from another class
+
+
+//Non-Access Modifiers for methods and variable
+1. final	- variables cannot be reassigned and methods cannot be overriden
+2. static	- variable/method belongs to the class itself than the instance (GLOBAL VARIABLES)
+3. abstract	- can only be used in an abstract class

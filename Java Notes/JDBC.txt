@@ -1,0 +1,80 @@
+//JDBC
+JDBC - is a tool or an api, used to create connections between the database and java application.
+
+//Datatypes
+	SQL		JAVA
+1.	VARCHAR		java.lang.String
+2.	BIT		boolean
+3.	NUMERIC		Java.math.BigDecimal
+4.	INTERGER	int
+5.	REAL		float
+6.	FLOAT		float
+7.	DOUBLE		double
+8.	BINARY		byte[]
+9. 	DATE		java.sql.Date
+
+
+
+
+//Steps to Connect JDBC
+Step 1: IMPORT PACKAGES
+	- this is to make sure relevant packages are readily available for the API
+	- add jar file build-path libraries, "mysql-connector-j-8.0.31.jar"
+	- import java.sql.*; packages
+
+Packages Required:
+	- import java.sql.Connetion; //establishes database connection
+	- import java.sql.DriverManager; //converts codes into the database
+	- import java.sql.ResultSet; //stores results from query
+	- import java.sql.SQLException; //catches error
+	- import java.sql.Statement; //statements to execute / send to the server
+
+
+Step 2: LOAD AND REGISTER DRIVER
+- imported drivers needs to be loaded and registered for establishing a connection
+
+		//Checks if connection is ready and working
+		try {
+			//load driver
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		}
+		catch(ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}	
+
+
+
+STep 3: CONNECTING DATABASE
+- connect to the database using .getConnection();
+		//get connection
+	ex.	
+		String url = "jdbc:mysql://localhost/university";
+		String user = "root";
+		String pass = ""; 	
+		Connection con = DriverManager.getConnection(url,user,pass);
+
+
+
+Step 4: WRITING A QUERY
+- write an sql command or query to be execute
+
+	ex.	String query = "SELECT * FROM students";
+		Statement statement = con.createStatement();
+		ResultSet result = statement.executeQuery(query);
+
+Step 5: EXECUTING QUERY
+- execute queries using executeQuery();
+
+Step 6: Processing Result
+1. Process Output
+2. Retrieve Values
+
+Step 7: Closing Statement
+- resultSet and statements needs to be closed explicitly
+
+Step 8: Closing Connection
+- disconnecting API to Database
+
+
+
+

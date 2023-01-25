@@ -1,0 +1,74 @@
+//PACKAGE
+javax.swing - is a part of Java Foundation Classes (JFC) that is used to create window-based applications.
+
+
+// Input/Output using Dialog Box
+1.JOptionPane - allows user to use GUI components for I/O, this class is contained in the package javax.swing
+
+
+
+//Type Of Message Dialog
+1. JOptionPane.PLAIN_MESSAGE
+2. JOptionPane.WARNING_MESSAGE
+3. JOptionPane.ERROR_MESSAGE
+4. JOptionPane.INFORMATION_MESSAGE
+5. JOptionPane.QUESTION_MESSAGE
+
+
+
+//JOptionPane Methods
+1.showMessageDialog() -  allows the programmer to display information or results in the dialog box.
+Syntax: 
+	a. JOptionPane.showMessageDialog (null, “String to Display”);
+	b. JOptionPane.showMessageDialog (null, “String to Display”, “Text in Title Bar”, Type of Message 		Dialog);
+
+2.showInputDialog() - allows the user to input a String
+Syntax:
+	Variable = JOptionPane.showInputDialog(null, “String to Display”);
+
+
+
+
+
+
+System.exit(0); - used to terminate a Java Application, required in java that displays GUI, 0 means success
+
+JDialog.setDefaultLookAndFeelDecorated() - is used to enhance the look of dialog boxes
+
+
+JTextArea() - A GUI component capable of displaying lines of text
+Syntax:
+	JTextArea object = new JTextArea (rows, columns);
+
+
+
+append() - Used to add more text to the end of the string that is already displayed in the JTextArea
+Syntax:
+	JTextAreaObject.append(“text to print”);
+
+
+
+setText() - Used to replace the text in the JTextArea with a new text
+Syntax:
+	JTextAreaObject.setText(“text to print”);
+
+
+
+JScrollPane() - GUI component with a scrolling functionality, attached to the JTextArea
+Syntax:
+	JScrollPane object = new JScrollPane (JTextAreaObject);
+
+
+
+
+
+
+//PARSING STRING INTO NUMBER using xxx.parseXXX(); or xxx.valueOf()
+1. Integer.parseInt(i) -   int number = Integer.parseInt(str); or  Integer number = Integer.valueOf(str);
+2. Double.parseDouble()
+3. Float.parseFloat()
+
+//CONVERTING NUMBER INTO STRING
+1. Integer.toString(i) - String num = Integer.toString(i); or String num = String.valueOf(i);
+2. Double.toString(d)
+3. Float.toString(f)

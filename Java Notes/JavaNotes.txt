@@ -1,0 +1,151 @@
+packages - folder in the directory used to store related codes in the same directory 
+class - every application begins with a class name, and that class must match the filename.
+main() - every program must contain the main() method
+
+//Comments
+1. Single line comments - //
+2. Multi-line Comments - /**/
+
+
+//PRINT TEXT or OUTPUT STATEMENTS
+1. System.out.println() - short for "print line", is used to print a value to the screen or console.
+2. System.out.print() - similar to println() but does not insert a new line at the end of the output.
+
+
+//Variable Data Types
+String - stores text, such as "Hello". String values are surrounded by double quotes
+int - stores integers (whole numbers), without decimals, such as 123 or -123
+float/double - stores floating point numbers, with decimals, such as 19.99f or -19.99f
+char - stores single characters, such as 'a' or 'B'. Char values are surrounded by single quotes
+boolean - stores values with two states: true or false
+
+
+
+//BUILT-IN PACKAGES (syntax: import packagename.classname)
+1.java.util.*; - java.util helps programmer handle user inputs
+
+
+
+//USER INPUT
+Scanner - Scanner class is used to get user input, and it is found in the java.util package.
+
+//Input Types
+.nextLine() 	used to read Strings
+.nextBoolean()	Reads a boolean value from the user
+.nextByte()	Reads a byte value from the user
+.nextDouble()	Reads a double value from the user
+.nextFloat()	Reads a float value from the user
+.nextInt()	Reads a int value from the user
+.nextLine()	Reads a String value from the user
+.nextLong()	Reads a long value from the user
+.nextShort()	Reads a short value from the user
+.next().nextChar(0)	Reads a char value from the user
+
+
+//ARRAY 
+w/ value - (syntax: datatype arrayname[] = {val1,val2,val3};)
+w/o value - (syntax: datatype arrayname[] = new datatype[size];)
+
+Ex.
+String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+
+
+
+
+//LOOP SYSTAX
+
+1.While Loop
+	int i = 0;
+	while (i < 5) {
+ 	   System.out.println(i);
+  	   i++;
+	}
+
+2. Do While Loop
+	int i = 0;
+	do {
+	  System.out.println(i);
+	  i++;
+	}
+	while (i < 5);
+
+3. For Loop
+	for (int i = 0; i < 5; i++) {
+  	   System.out.println(i);
+	}
+
+4.For-Each Loop
+	String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+	for (String car : cars) {
+  	   System.out.println(car);
+	}
+
+
+
+
+
+
+//METHODS
+Syntax: 
+	modifier returntype methodname(parameters){
+		//CODES
+	}
+
+Ex. 
+ 	static void ADD(int num1, int num2) {
+   	 	// code to be executed
+  	}
+
+//Return Type - basically all the data types
+1.void - returns Nothing
+2.int - returns integers
+3.String - return Strings
+etc...
+
+
+//Global Variable - variables declared within a class, accessible within the whole class. Must have a static 		modifier in order to use.
+ex.
+	static String name = "Edward";
+
+
+
+
+
+//SETS - package java.util
+Sets - an unordered collection of objects in which duplicate values cannot be stored.
+Syntax:
+	Set<Integer> t = new Hashset<Integer>();
+
+//SET METHODS
+t.add(val) - used to add a specific element to the set.
+t.remove(val) - used to append all of the elements from the mentioned collection to the existing set
+t.size() - returns an integer value which signifies the number of elements.
+t.clear() - used to remove all the elements from the set 
+t.isEmpty() - used to check whether the set is empty or not.
+contains(val) - This method is used to check whether a specific element is present in the Set or not.
+
+
+
+
+//PARSING STRING INTO NUMBER using xxx.parseXXX(); or xxx.valueOf()
+1. Integer.parseInt(i) -   int number = Integer.parseInt(str); or  Integer number = Integer.valueOf(str);
+2. Double.parseDouble()
+3. Float.parseFloat()
+
+//CONVERTING NUMBER INTO STRING
+1. Integer.toString(i) - String num = Integer.toString(i); or String num = String.valueOf(i);
+2. Double.toString(d)
+3. Float.toString(f)
+
+
+
+
+//MIGHT BE USEFUL
+1. Escape Characters: \n - new line,  \t - tab
+2. .equals() -  compares two strings, and returns true/false. Mostly used in comparing strings rather than == 
+3. .equalsIgnoreCase() - compares two strings, ignoring lower case and upper case differences.
+4. Shortcut keys:
+	- ctrl + space : displays intellisense / auto-complete
+	- ctrl + shift + o : auto import packages
+
+

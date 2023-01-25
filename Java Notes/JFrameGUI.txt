@@ -1,0 +1,90 @@
+//PACKAGES REQUIRED
+javax.swing.JFRAME; - allows us to create a window component for applications
+java.awt.*; //Container, Layouts, etc..
+import javax.swing.*; //GUI Components
+java.awt.event.ActionEvent;
+
+
+Container - is basically a screen where the where the components are placed at their specific locations. Thus 	it contains and controls the layout of components.
+	- added using .getContentPane();
+ex.
+	Container c = .getContentPane();
+
+
+extends JFRAME - creates an instance for the class to inherit the properties of the JFRAME Class such as 		(setTitle, setSize, etc...).
+
+//JAVA GUI COMPONENTS
+1.JLabel - contains a string of character to display on the screen
+	Syntax: JLabel lbl1 = new JLabel("String Value");
+
+2.JTextField - used to ge a single line of information from the user or display information on screen
+	Syntax: JTextField txt1= new JTextField (size);
+
+3.JButton - object that the user can press to perform an action
+	Syntax: JButoon btn1 = new JButton;
+
+
+
+//JFRAME METHODS
+.setTitle("title") - used to set up a string displayed in the title bar
+.setResizable(false) - allows users to resize the gui
+.setSize(width, heigth) - Sets the size (width and height) of the component.
+.setLayout(new Layout()) - Defines the layout manager for the component.
+.setLocation(x,y)
+.setVisible(true) - Changes the visibility of the component, by default false.
+
+.setBound(x,y,w,h) - Moves and resizes this component. 
+
+.add() - used to insert a component
+
+.setBackground(new Coloer(0,0,0)) - used to set background color
+.setForeground()
+.setFont() 
+.setEditable(true) -  used to determine whether the component is editable
+.setTooltip() - used to provide hint to the user about any component when mouse is hovered.
+
+.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); - used to close or exit the application when user closes the window.
+.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); - similar to EXIT_ON_CLOSE but instead, hides the window
+
+
+//Layout Manager - used to set how components within a container are positioned and sized
+1.BorderLayout(default) - c.add(east, BorderLayout.EAST); //EAST, WEST, CENTER, SOUTH, NORTH
+
+2.GridLayout 	- similar to tables, c.setLayout(new GridLayout(3,3)); //ROWS, COLUMNS
+		- c.setLayout(new GridLayout(3,3)); //ROWS, COLUMNS
+		- c.setLayout(new GridLayout(3,3,5,5)); //ROWS, COLUMNS, Vertical Gap, Horizontal Gap
+
+3.FlowLayout	- center align by default
+		- display flex
+		- change alignment using "c.setLayout(new FlowLayout(FlowLayout.LEFT));"
+
+Ex.
+c.setLayout(new BorderLayout())
+
+
+
+
+//Event and Listener
+Event Handler - is the mechanism that controls the event and decides what should happen if an event occurs.
+1.Event - Changing the state of an object (click, mouse movement, keyboard inputs, etc..)
+2.Event Source - the object where the events happen. (button, textbox, etc..)
+3.Event Listener - listens for an event to occur, is responsible for generating a response to an event.
+4.Response - basically what will happen when an event occurs
+
+e.getSource() - returns the object that the event came from.
+.getText() - return a string inside the component
+.setText() - assigns a new string inside the component
+
+Note:
+events - basically something tha happens while the program is running
+actionListener - basically waits for an action to be performed, then fires the actionEvent
+
+
+
+
+
+
+
+
+
+
