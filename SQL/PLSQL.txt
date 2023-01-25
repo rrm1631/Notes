@@ -1,0 +1,435 @@
+//SET UP
+1. Install Oracle Database Express Edition
+2. Install Oracle SQL Developer
+3. Add/Create a connection
+username: SYS (set role to: SYSDBA)
+password: admin (passwrod is set during installation)
+
+//ROLES
+1. SYSDBA - system privilege is fully empowered database administrator 
+2. SYSOPER - system privelege that allows user to perform basic operations, but can't look at user data.
+
+
+//PL/SQL (Procedural Language/ Standard Query Language)
+1. PL/SQL block 	- is defined by the keywords DECLARE, BEGIN, EXCEPTION, and END. 
+		- is the  basic programming structure in PL/SQL
+
+//Standard Format
+DECLARE
+  <declaration section> //define variables 
+BEGIN
+  <executable commands> //write program logic
+EXCEPTION
+  <exception handling> //write exceptions
+END;
+
+
+Declarations SECTION
+- starts with the keyword DECLARE	
+- contains definitions of PL/SQL identifiers (variables, constants, cursors, subprograms, etc..)
+- all local variables used in the program are defined and documented here
+- optional
+
+Executable SECTION
+- enclosed between BEGIN and END keywords
+- consist of PL/SQL statements
+- mandatory section
+
+Exception handling SECTION
+- starts with the keyword EXCEPTION
+- contains exeptions that handle errors
+- optional
+
+
+Ex.
+	DECLARE
+		i number;
+	BEGIN
+		i:=1;
+		dbms_output.put_line(i);
+	EXCEPTION
+		WHEN OTHERS
+		THEN
+		dbms_output.put_line("ERROR");
+	END;
+
+
+
+//Commands
+SET SERVEROUTPUT ON; - sql command that allows server to communicate and display results on device
+
+//Assigning Values
+":=" (assigning operator) - used to assign values to variables
+
+//Concatenate
+"||" - used to concatenate strings 
+
+//print line
+BEGIN
+   DBMS_OUTPUT.PUT_LINE('hello world');
+END;
+
+
+
+
+//Comments
+1. "--" (Double hyphen) - single-line comments
+2. "/**/" - multi-line comments
+
+
+//Important
+1. When creating multiple blocks, always indicate a "/" at the end of your blond to indicate its completion before starting a new block.
+
+
+//Data Types
+1. Scalar - Single values with no internal components, such as a NUMBER, DATE, or BOOLEAN
+- Numeric (INT, INTEGER, FLOAT, NUMBER, DOUBLE PRECISION)
+- Character (CHAR(size), VARCHAR2(size), LONG)
+- Boolean (TRUE, FALSE, NULL)
+- Datetime (DATE)
+
+2. Large Object (LOB) - Pointers to large objects that are stored separately from other data items, such as 			text, graphic images, video clips, and sound waveforms.
+- BFILE
+- BLOB
+- CLOB
+- NCLOB
+
+3. Composite - Data items that have internal components that can be accessed individually. For example, 		collections and records.
+
+4. Reference - Pointers to other data items.
+
+
+
+//Anchored Data-Types - are data types assigned to a variables based on a database object
+Synatax : variable-Name Type_Attribute %Type
+	
+
+%TYPE - direct reference to database object, this will assign the data type and width of the column or 			database object referenced to the variable.
+
+	ex. v_firstname employees.firstname %TYPE;
+
+
+
+
+
+//CONSTANTS
+Syntax: constant_name CONSTANT datatype(width) := value;
+ex.
+	v_pi CONSTANT NUMBER := 3.14;
+
+DEFAULT - allows users to set a default value for a variable at the declaration time. This also work on constants, instead of assignemnt operator you can use DEFAULT to initialize the constant
+ex.
+	v_pi CONSTANT NUMBER DEFAULT 3.14;
+
+NOT NULL - prevents user from assigning null values to constants or variables
+ex.
+	v_pi CONSTANT NUMBER NOT NULL DEFAULT 3.14;
+
+Note:
+- using a constant requires you to declare its value when initialized
+
+
+
+
+
+//BIND VARIABLES (a.k.a HOST VARIABLES)
+- unlike user variable which can only be declared inside the declaration section, bind/host variables can be declared anywhere in the host environment.
+
+syntax:
+	VARIABLE v_name dataType;
+
+ex.
+	VARIABLE v_bind1 VARCHAR2(10); --declare bind variable
+	EXEC : v_bind1 := 'Hello World!'; --initialize bind variable
+
+alternate ex.
+	BEGIN
+		:v_bind1:= 'Hello World!'
+	END;
+ 
+Note:
+- to access bind variables, use a colon(:) before the name of the variable.
+
+
+//Display BIND Variables
+1. PRINT - can be declared outside block statements
+	PRINT 'HELLO WORLD!';
+
+2. AUTO PRINT - simply execute SET AUTOPRINT ON; This will automatically printout bind variables.
+	
+	
+
+
+
+
+//Conditional Structures
+1. IF-THEN-ELSE statement - checks a boolean value or expression if true/false.
+	syntax:
+		IF condition THEN
+		   ...statements
+		ELSIF condition THEN
+		   ...statements
+		ELSE
+		   ...statements
+		END IF;	
+
+2. CASE Statement
+	syntax:
+		CASE [expression]
+		   WHEN condition1 THEN result1 //ex. WHEN num1 < 5 THEN dbms_output.put_line('less than 5');
+		   WHEN condition2 THEN result2
+		   ELSE result
+		END CASE
+
+
+
+//Iterative Structures or LOOPS
+
+EXIT - will terminate the loop if exit condition is true, usually used with the help of IF-THEN condition
+	ex.
+		IF v_counter >= 10 THEN
+		  EXIT;
+		END IF;
+
+EXIT WHEN - much simpler than using the EXIT statement, since it is usually done in one line.
+	ex.
+		EXIT WHEN v_counter >= 10;
+
+
+1. SIMPLE LOOP
+	syntax:
+		DECLARE
+		   i INTEGER := 0;
+		BEGIN
+		   LOOP
+		    	DBMS_OUTPUT.PUT_LINE('index: ' || i);
+		        i := i + 1;
+			EXIT WHEN i >= 10;
+		   END LOOP;
+		END;
+
+2. WHILE LOOP - best used when number of iteration is unknown
+	syntax:
+		DECLARE
+		   i INTEGER := 0;
+		BEGIN
+		   WHILE i <= 10 LOOP
+		    	DBMS_OUTPUT.PUT_LINE('index: ' || i);
+		        i := i + 1;
+		   END LOOP;
+		END;
+
+
+3. FOR LOOP
+	syntax:
+	//numeric for loops
+		BEGIN
+		   FOR i IN 1..10 LOOP //index 1-10
+		    	DBMS_OUTPUT.PUT_LINE('index: ' || i);
+		   END LOOP;
+		END;
+
+	//cursor for loops
+		BEGIN
+		   FOR i IN (SELECT firstname FROM employees WHERE depID = 2)
+		   LOOP
+		    	DBMS_OUTPUT.PUT_LINE('Employee Name: ' || i.firstname);
+		   END LOOP;
+		END;
+
+Note:
+- pl/sql supports numeric and cursor FOR LOOPS.
+- NUMERIC FOR LOOPS - iterates across a defined range
+- CURSOR FOR LOOPS - iterates across rows returned by a SELECT statement.
+
+
+
+
+
+
+//TRIGGERS
+triggers - are named pl/sql blocks which are stored in the database.
+
+Trigger events: 
+1. DML - UPDATE, INSERT, DELETE
+2. DDL - CREATE, ALTER, DROP
+3. System event - shutdown, startup
+4. User event - logon, logoff
+
+Trigger Types
+1. DML Triggers -
+2. DDL Triggers -
+3. System/Database Triggers -
+4. Instead-of Triggers -
+5. Compound Triggers -
+
+Syntax:
+
+CREATE [OR REPLACE] TRIGGER trigger_name
+{BEFORE|AFTER|INSTEAD OF} trigger_event ON table_name - 
+[FOR EACH ROW] [FOLLOWS another_trigger_name]
+[ENABLE|DISABLE] [WHEN CONDITION]
+
+DECLARE
+   declaration statements..
+BEGIN
+   executable statements..
+END;
+
+
+Defitions:
+CREATE [OR REPLACE] TRIGGER trigger_name − Creates or replaces an existing trigger with the trigger_name.
+{BEFORE | AFTER | INSTEAD OF} − This specifies when the trigger will be executed.
+
+OR REPLACE - used to re-create the trigger if it already exists.
+BEFORE - causes the database to fire the trigger before executing the triggering event.
+AFTER - causes the database to fire the trigger after executing the triggering event.
+INSTEAD OF - causes Oracle Database to fire the trigger instead of executing the triggering event. 
+Note: INSTEAD OF triggers are valid for DML events on views. They are not valid for DDL or database events.
+
+FOR EACH ROW - used to designate the trigger as a row trigger. Oracle Database fires a row trigger once for each row that is affected by the triggering statement and meets the optional trigger constraint defined in the 
+WHEN condition - Specify the trigger condition, which is a SQL condition that must be satisfied for the database to fire the trigger. 
+
+
+
+
+//CONVERTION
+1.to_char(value, [format_mask]) - converts number/date to string
+2.to_number(string, [format_mask]) - converts string to number
+3.to_date(string, [format_mask]) - converts string to date
+
+Note:
+- format mask is optional
+
+
+
+
+//PreDefined Exceptions in PL/SQL
+1. OTHERS - catches all exceptions that the block does not name specifically.
+2. NO_DATA_FOUND
+
+
+Ex.
+	EXCEPTION
+    		WHEN OTHERS 
+    		THEN
+		dbms_output.put_line("Error Occured");
+
+
+
+
+
+
+
+
+
+//ALIASES 
+1. Quoted identifier - uses "" wrap identifier inside, this allows the use of space
+	Ex.
+		SELECT name "STUDENT NAME", gender, age FROM students;
+		//this will display a table, with the column name as STUDENT NAME
+
+2. Non-quoted identifiers - letters, numbers, _, #.
+			- 1-30 characters
+			- must start with a letter
+	Ex.
+		SELECT name STUDENT_NAME, gender, age FROM students;
+	
+3. Using AS
+	Ex.		
+		SELECT name as "STUDENT NAME", gender, age FROM students;
+
+
+
+
+//CONSTRAINTS
+NOT NULL 	- Ensures that a column cannot have a NULL value
+UNIQUE 		- Ensures that all values in a column are different
+PRIMARY KEY	- A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+FOREIGN KEY 	- Prevents actions that would destroy links between tables
+CHECK 		- Ensures that the values in a column satisfies a specific condition
+DEFAULT 	- Sets a default value for a column if no value is specified
+CREATE INDEX 	- Used to create and retrieve data from the database very quickly
+
+Note:
+- When viewing a table constraints , the constraint_name is set to a code for that specific constraint. In order to make it more readable to other users, you can counter that by:
+
+	instead of:
+		CREATE TABLE departments(
+    			depID INT PRIMARY KEY, //constraint_name = SYS_C008315
+    			depName VARCHAR2(50)
+		);
+
+	use this:
+		CREATE TABLE departments(
+    			depID INT, //constraint_name = pk
+    			depName VARCHAR2(50)
+			CONSTRAINT pk PRIMARY KEY(depID) 
+		);
+
+
+
+
+
+
+Oracle Database Ex:
+password: admin
+
+
+
+
+//SQL COMMANDS
+1.SELECT INTO -  retrieves data from one or more database tables, and assigns the selected values to variables 		or collections. 
+
+	ex.
+		DECLARE
+    			v_salary NUMBER(8);
+    
+		BEGIN
+    			SELECT salary INTO v_salary FROM employees WHERE employeeid = 1;
+    			DBMS_OUTPUT.PUT_LINE(v_salary);
+		END;
+
+
+
+
+
+
+
+
+DEFAULT:
+DIR: C:\Users\User\AppData\Roaming\SQL Developer
+
+TESTING:
+CREATE TABLE departments(
+    depID INT PRIMARY KEY,
+    depName VARCHAR2(50)
+);
+
+CREATE TABLE employees(
+    employeeID INT PRIMARY KEY,
+    depID INT,
+    firstName VARCHAR2(40),
+    lastName VARCHAR2(40),
+    bossID INT,
+    salary NUMBER,
+    CONSTRAINT fk FOREIGN KEY(depid),
+    REFERENCES departments(depid)
+);
+
+INSERT INTO departments (depid, depName) VALUES (1, 'Management');
+INSERT INTO departments (depid, depName) VALUES (2, 'Administration');
+INSERT INTO departments (depid, depName) VALUES (3, 'Technological');
+INSERT INTO departments (depid, depName) VALUES (4, 'Business');
+INSERT INTO departments (depid, depName) VALUES (5, 'Support');
+
+INSERT INTO employees (employeeID, depID, firstName, lastName, bossID, salary) VALUES (1, '1', 'Jacob', 'Smith', NULL, 23000);
+INSERT INTO employees (employeeID, depID, firstName, lastName, bossID, salary) VALUES (2, '2', 'Ethan', 'Johnson', NULL, 5300);
+INSERT INTO employees (employeeID, depID, firstName, lastName, bossID, salary) VALUES (3, '3', 'Isabella', 'Villas', NULL, 4500);
+INSERT INTO employees (employeeID, depID, firstName, lastName, bossID, salary) VALUES (4, '2', 'Jones', 'Alexander', NULL, 6800);
+INSERT INTO employees (employeeID, depID, firstName, lastName, bossID, salary) VALUES (5, '3', 'Joshua', 'Brown', NULL, 4800);
+INSERT INTO employees (employeeID, depID, firstName, lastName, bossID, salary) VALUES (6, '4', 'Anthony', 'Davis', NULL, 40000);
+INSERT INTO employees (employeeID, depID, firstName, lastName, bossID, salary) VALUES (7, '5', 'Ezra', 'Miller', NULL, 32000);
+INSERT INTO employees (employeeID, depID, firstName, lastName, bossID, salary) VALUES (8, '5', 'Lebron', 'James', NULL, 52000);
+
+commit;
