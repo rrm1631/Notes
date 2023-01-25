@@ -1,0 +1,89 @@
+BASIC COMMANDS:
+
+cd - change directory
+ls/dir - list files in directory
+rm - removes file ex. rm filename.html
+rm -rf <repository_path>/.git - removes .git folder / remove GIT 
+
+git init - initialized an empty reposity
+git config --global user.name 'Raph' - set username
+git config --global user.email 'Raph@gmail.com' - set email
+
+git add <file> / git add *.<file> / git add . - add files in the staging area
+git add . - shortcut to add everything all at once in the staging area
+git rm --cached file.html - removes files from the staging area
+git status  - checks which files has been change
+ 
+git commit 
+git commit -m "" - passes a message when commit for references
+git log - shows a history list of commits done
+git log --oneline - shows history list in one line 
+
+git checkout (readonly)-  any changes done are not saved, it shows only the code in this point in time
+git revert (undo) - revert the changes and adds new commit after undo
+git reset (permanently) - permanently reverts the changes 
+git reset --hard - permanently reverts the changes and parts of the future commits are not saved
+git checkout master - returns to the current/original state
+
+git branch - creates a new branch from the master branch
+git branch -a - shows or display all the branches
+git checkout branchname - allows you to select the branch you want to be working on
+git branch -d - delete a specific branch
+git push origin --delete remoteBranchName - delete remote branch
+git checkout -b branchname - shortcut to automatically create and select a branch
+
+git merge - merge the branches
+
+
+
+Here's what I know using React JS
+USING GITHUB
+
+git push - use to push files in the remote remosity created in github
+syntax(git push link branchname) 
+
+git remote add origin link- (origin is user defined) use to add an alias, for http links in github
+- instead of having the http link for the remote repository all the time when you push, you can instead use an alias
+
+git remote -v - displays all the alias created
+
+git clone - clone a repository to your local folder
+syntax(git clone link)
+
+git pull - fetches and merge all the codes in the repository to update all the files in the local repository
+syntax(git pull link)
+
+
+
+
+
+
+
+//OLD STUFF
+git push
+git pull
+git clone
+git branch <branch name>
+git checkout <branch name>
+git merge <branch name>
+
+$ touch (creates files)
+git init (creates hidden .git folder)
+git config --global user.name 'Raph' - set username
+git config --global user.email 'Raph@gmail.com' - set email
+
+clear (clear terminal)
+get status (check status or files added/missing)
+get rm --cached <file> (remove file git)
+git commit / git comit -m '<message>' (directly type msg when commit)
+git log	(list commit history)
+git chechout master (returns to latest log commit)
+
+
+NOTES:
+https://www.google.com/search?q=yns+Philippines+Inc.+technical+exa&rlz=1C1VDKB_enPH975PH975&oq=yns+Philippines+Inc.+technical+exa&aqs=chrome..69i57.4789j0j7&sourceid=chrome&ie=UTF-8
+repository - container for projects you can track using Git
+git files are colored green - if created a file inside a repository, all files will be colored green
+green - new files are colored green
+orange - files changes to orange when altered/modified
+cloning a repository automatically creates an alias called origin to easily push it back to the original repo
