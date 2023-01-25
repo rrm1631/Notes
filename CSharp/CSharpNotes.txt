@@ -1,0 +1,89 @@
+Console.WriteLine(); - used to display something in the console
+Console.Write(); - used to display something in the console in the same line
+\n - breakline
+
+DATA TYPES: char, string, bool, int/long, float/double
+char = '' uses single quote
+string = "" uses double quote
+float = requires an f to determine its a float (ex. float gpa = 92.5f)
+
+Console.ReadLine(); - used for Inputting string data types, does not accept other data types
+Console.Read(); - used for Inputting char data types, returns an ascii code of the char (needs convertion)
+Console.ReadKey(); - used for Inputting char and display output without pressing enter by pressing a key
+
+Type Casting - assigning a value of one datatype to another datatype
+1. Implicit Casting - converting a smaller type to a larger type size. 
+2. Explicit Casting - convert a larger type to a smaller type. done manually in a ()
+
+Convertion Methods - uses a built in method to convert data types from one type to another. Espicially strings	
+1. Convert.ToInt32() - converts data type to int
+2. Convert.ToInt64() - converts data type to long
+3. Convert.ToSingle() - converts data type to float
+4. Convert.toDouble() - converts data type to double
+5. Convert.toString() - converts data type to string
+
+
+
+C# Arrays
+1.Array w/ Values: 
+syntax: datatype[] identifier = {values}; //ex: string[] names {"raph", "mario", "luigi"};
+
+2.Array w/o Values: 
+syntax: datatype[] identifier = new datatype[size]; // string[] names = new string[4];
+
+
+
+LOOPS
+1. while syntax:
+int i;
+while{
+  i++;
+}
+
+2. for syntax:
+for(int i; i < array.Length; i++){}
+
+3. Foreach syntax:
+foreach(string name in names){} - this automatically iterates in the array
+
+
+.GetLenght() - gets the size of the row, usually used in a 2D array.
+
+
+
+
+
+
+
+
+METHODS/FUNCTIONS
+syntax: modifier returntype methodname(){} ex. static void helloWorld(){console.write("helloworld");}
+
+Return Types:
+1. void - returns nothing
+2. int - returns integer
+3. float - returns double
+etc.
+
+overloading methods - not encourage, you can use the same name for a method but has different parameters
+
+
+Local Variables - variables declared inside a method, condition, loops or any other block of codes is only accessible inside that block of code.
+
+
+Global Variables - must be declared inside the class w/ the static modified - ex. static string name = "Raph";
+
+
+
+SHORTCUT KEYS:
+Comment - (ctrl + shift + /)
+
+
+
+
+
+
+
+
+
+
