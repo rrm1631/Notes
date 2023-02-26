@@ -1,0 +1,4 @@
+Streams - a sequence of elements supporting sequential and parallel aggregate operations.
+
+filter()
+map()

@@ -1,0 +1,17 @@
+method - is a collection of statements that perform specific task and returns the result when called.
+
+//method reference
+1. To refer to a method in an object
+syntax:
+	object::methodName
+
+example:
+	basicMath::add //from the class basicMath, it fires the function named add
+
+2. To print all elements in a list
+syntax:
+	list.forEach(s -> System.out.println(s));
+
+3. Shorthand to print all elements in a list
+syntax:
+	list.forEach(System.out::println)	

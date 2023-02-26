@@ -1,0 +1,111 @@
+//Java Threads
+Threads 
+- allows a program to operate more efficiently by doing multiple things at the same time.
+- threads can be used to perform complicated task in the background without interrupting the main program.
+
+//Creating a Thread
+1. Extends - by etending the Thread class and overriding its run() method.
+ex.
+	public class Main extends Thread {
+		public void run(){
+			System.out.println("The code is running in a thread")
+		}
+	}
+
+2. Implements - by implementing the Runnable interface
+ex. 
+	public class Main implements Runnable {
+		public void run(){
+			System.out.println("The code is running in a thread");
+		}
+	}
+
+
+
+
+//Running a Thread
+1. If extends Thread, the thread can be run by creating an instance of the class and call its start() method.
+ex.
+	public class Main extends Thread {
+		public static void main(String[] args) {
+			Main thread = new Main();
+			thread.start();
+			System.out.println("The code is running outside of the thread");
+		}
+	}
+	
+	public void run(){
+		System.out.println("The code is running in a thread");
+	}
+
+2. If implements Runnable, the thread can be run by passing an instance of the class to a Thread object's contructor and then calling thre thread's start() method
+
+ex.
+	public class Main implements Runnable {
+		public static void main(String[] args) {
+			Main obj = new Main();
+			Thread thread = new Thread(obj);
+			thread.start();
+			System.out.println("The code is running outside of the thread");
+		}
+	}
+	
+	public void run(){
+		System.out.println("The code is running in a thread");
+	}
+
+	
+
+
+
+//Some Thread Methods
+.activeCount() - returns the number of active threads running
+.currentThread() - returns the thread called upon
+	.getName() - returns the name of the current Thread
+	.setName() - sets the name of the current Thread
+	.getPriority() - returns the prioroty number of the Thread
+	.setPriority() - sets the priority number of a Thread from 1-10 (10 highest, 1 lowest).
+	.activeCount() - returns the number of active threads
+	.isAlive() - checks if the Thread is alive.
+	ex.
+		System.out.println(Thread.currentThread().getName());
+
+.sleep(interval) - used to pause an execution of the current thread for a specified milliseconds. Somewhat similar to setInterval(), will wait a for a millisecond before it executes the rest of the thread.
+	ex.
+		thread.sleep(2000);
+		System.out.println("Print Hello in 2 seconds");
+
+
+//Starting a Thread
+- when creating multiple threads, if you run .isAlive it will first return false.
+.start() - basically used to start a thread in order to execute its content.
+
+ex.	
+	//Thread to Instanciate in order to create a thread in main();
+	public class MyThread extends Thread{
+	@Override
+	public void run() {
+		System.out.println("This thread is running");
+		}
+	}
+
+	//Your new thread
+	myThread thread2 = new myThread();
+	start();
+	System.out.println(thread2.isAlive); //will return boolean, and fires 
+
+
+
+//Two kinds of Threads
+1. Daemon Threads - low priority threads that runs in background to perform task such as gargage collections.
+
+.isDaemon(true) - set thread as a Daemon thread.
+.setDaemon() - checks if thread is a Daemon thread.
+
+2. User Threads - JVM (Java Virtual Machine) terminates itself when all user threads or non-daemon threads finish their executions.
+
+
+
+
+
+

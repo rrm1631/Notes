@@ -1,0 +1,65 @@
+//ARRAY OF OBJECTS
+syntax: className identifier[] = new className[size];
+	ex. Employee employees[] = new Employee[2];
+
+//Storing objects in array
+Syntax: identifier[index] = new ClassName(constructor);
+	ex. employees[0] = new Employee("Mario", "Bro", "Plumber");
+
+//Accessing Objects inside Array
+	ex. employees[0].method/var;
+
+//ENUMS - a special class that contains a collection of constant values
+
+Note:
+- enums can represent words as objects
+- enums are constant values
+- enums constructors are private 
+
+
+
+
+
+//ARRAY LIST - is a resizable array from java.util package.
+Syntax:
+	ArrayList<DataType> identifier = new ArrayList<DataType>();
+
+Adding Values:
+	identifier.add(value);
+	identifier.add(index, value); //adds between
+
+Reading Values:
+	identifier.get(index);
+
+Update Values:
+	identifier.set(index, value);
+
+Delete Values:
+	identifier.remove(index); - removes specific index
+	identifier.clear(); - remove all items
+
+identifier.size() - returns the number of items in the arraylist.
+
+
+Note:
+- ArrayList doesn't use Square Brackets
+- Uses a non primitive data type
+
+
+//PRIMITIVE DATA TYPE
+1.int
+2.float
+3.boolean
+4.char
+5.double
+
+//NON PRIMITIVE DATA TYPE
+1.String
+2.class objects
+
+//WRAPPER CLASS
+1.Integer
+2.Float
+3.Boolean
+4.Character
+5.Double

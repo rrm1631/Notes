@@ -1,0 +1,14 @@
+Optional - used to represent a value that may or may not be present. In other words, an Optional object can either contain a non-null value (in which case it is considered present) or it can contain no value at all (in which case it is considered empty).
+
+//Methods used in Optional
+.empty()
+
+.of() -  return an Optional object containing the given value if the value is non-null, or an empty Optional object if the value is null.
+
+.ofNullable() - method, which will return an empty Optional object if the value is null, or an Optional object containing the given value if it is non-null. 
+
+.isPresent() - method to check if it contains a non-null value, returns true if there is a value else false if empty
+
+.get() - method to retrieve the value
+
+.getOrElse() - will return the value if it is present, or a default value if it is not.

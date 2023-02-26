@@ -1,0 +1,24 @@
+//THIS BASICALLY IS USED TO MAKE YOUR ARRAY INTO A LIST
+
+1. Arrays.asList() 
+- acts as a bridge between array-based and collection-based APIs, Using this method, we can convert from an array to a fixed-size List object.
+- this takes in inline elements and create an object.
+
+Note: 
+- we can't modify its length because adding or removing elements is not allowed. 
+- However, we can modify single items inside the array. Note that all the modifications we make to the single items of the List will be reflected in our original array:
+
+ex.
+	String[] stringArray = new String[] { "A", "B", "C", "D" };
+	List stringList = Arrays.asList(stringArray);
+
+2. ArrayList(Arrays.asList(array)) - Similar to the Arrays.asList method, we can use ArrayList<>(Arrays.asList(array)) when we need to create a List out of an array.
+
+ex.
+	String[] stringArray = new String[] { "A", "B", "C", "D" }; 
+	List stringList = new ArrayList<>(Arrays.asList(stringArray))
+
+Note:
+- unlike Array.asList, this is an independent copy of the array, which means that modifying the new list won't affect the original array. 
+- Additionally, we have all the capabilities of a regular ArrayList, like adding and removing elements:
+

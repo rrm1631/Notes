@@ -1,0 +1,49 @@
+//List
+list -  inherits the Collection interface, an ordered collection of objects in which duplicate values can be stored. 
+
+syntax:
+	List myList = new ArrayList();
+
+
+//Commonly seen list
+1. ArrayList - class which is implemented in the collection framework provides us with dynamic arrays in Java. 
+	Ex.	
+		List<Integer> arrli = new ArrayList<Integer>();
+
+2. LinkedList - LinkedList is a class that is implemented in the collection framework which inherently implements the linked list data structure. It is a linear data structure where the elements are not stored in contiguous locations and every element is a separate object with a data part and address part. 
+
+	Ex.	
+		 List<Integer> ll = new LinkedList<Integer>();
+
+3. Vector - Vector implements a dynamic array that means it can grow or shrink as required. Like an array, it contains components that can be accessed using an integer index.
+
+	Ex.	
+		List<Integer> v = new Vector<Integer>();
+
+4. Stack -  is a class that is implemented in the collection framework and extends the vector class models and implements the Stack data structure. The class is based on the basic principle of last-in-first-out. In addition to the basic push and pop operations, the class provides three more functions of empty, search and peek. 
+
+	Ex.	
+		List<Integer> s = new Stack<Integer>();
+
+//List Operations
+Operation 1: Adding elements to List class using add() method
+	- add(Object): This method is used to add an element at the end of the List.
+	- add(int index, Object): This method is used to add an element at a specific index in the List
+
+Operation 2: Updating elements in List class using set() method
+	- set(index, object): changes the index and the updated element which needs to be inserted at that 	index. 
+
+Operation 3: Removing elements using remove() method
+	- remove(Object): This method is used to simply remove an object from the List. If there are multiple 	such objects, then the first occurrence of the object is removed.
+	- remove(int index): Since a List is indexed, this method takes an integer value which simply removes 	the element present at that specific index in the List.
+
+
+//List Methods
+1. size() - This method is used to return the size of the list.
+2. clear() - This method is used to remove all the elements in the list. 
+3. indexOf() - This method returns the first occurrence of the given element or -1 if the element is not present in the list.
+4. lastIndexOf() - This method returns the last occurrence of the given element or -1 if the element is not present in the list.
+5. equals() - This method is used to compare the equality of the given element with the elements of the list.
+6. hashCode() - This method is used to return the hashcode value of the given list.
+7. isEmpty() - This method is used to check if the list is empty or not. It returns true if the list is empty, else false.
+8. contains() - This method is used to check if the list contains the given element or not. It returns true if the list contains the element.

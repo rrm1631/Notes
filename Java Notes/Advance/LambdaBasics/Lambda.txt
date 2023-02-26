@@ -1,0 +1,80 @@
+//Lambda Expressions
+lambda expression 
+- is a short block of code which takes in parameters and returns a value. Lambda expressions are similar to methods, but they do not need a name and they can be implemented right in the body of a method.
+
+Syntax:
+	1. parameter -> expression 			: 	Single parameter and an expression
+	2. (parameter1, parameter2) -> expression 	:	Multiple parameters
+	3. (parameter1, parameter2) -> { 		: 	Code Block
+		code block...
+		return
+	}
+
+//Using Lambda Expressions
+1. ArrayList's forEach() to print each item
+- Lambda expressions are usually passed as parameters to a function.
+
+ex.
+	public static void main(String[] args) {
+    	   ArrayList<Integer> numbers = new ArrayList<Integer>();
+    	   numbers.add(5);
+    	   numbers.add(9);
+    	   numbers.add(8);
+    	   numbers.add(1);
+    	   numbers.forEach( (n) -> { System.out.println(n); } );
+  	}
+
+
+2. Using Lambda in a Method
+- to use a lambda expression in a method, the method should have a parameter with a single method interface as its type.
+
+ex.
+	interface myFunction {
+		void someFunction();
+	}
+
+	public static void main(String[] args) {
+		myFunction yourMethod = () -> System.out.println("Hello World")
+	}
+
+ex #2
+	interface myFunction {
+		void someFunction();
+	}
+
+	public static void main(String[] args) {
+		myFunction yourMethod = () -> System.out.println("Hello World")
+	}
+
+
+Note:
+- basically a Lambda expression is an interface that has a method of that type
+- when using a lambda it must has a corresponding interface with only 1 abstract method.
+
+
+
+//Using Lambdas in Threads/Runnable
+syntax:
+	Thread myLambdaThread = new Thread(()->System.out.println("Printed inside Lambda Runnable"));
+	myLambdaThread.run();
+
+
+
+//Functional Interface Annotation
+- Functional Interface - a type of interface that has only one method 
+
+@FunctionalInterface - used to indicate that an interface is intended to functional interface. This ensures that users will not add other methods which will help maintain its single method structure.
+ex.
+	@FunctionalInterface
+	public interface Hello {
+		public void sayHello();
+	}
+	
+
+
+
+
+
+
+
+
