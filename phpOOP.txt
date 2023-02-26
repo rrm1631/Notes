@@ -1,0 +1,29 @@
+instance - are objects that belongs/created by a particular class
+properties - are basically variables inside a class
+constructors - is a method called during the instantiation of the object, and is used to assign value to the property.
+getters & setters - are class methods used to retrieve/set values of an object inside a private class
+
+get_class(classname); - returns which class is being used by an instance
+get_class_vars(classname);  - returns all properties inside the class as an array
+get_class_method(classname);  - returns all the methods inside the class as an array
+
+getters - is a method created that returns a property outside the class if an object is private
+setters - is a method that sets or change a property
+
+Access Modifiers
+1. public - makes objects accessible outside the class (anywhere)
+2. private - makes objects accessible inside the specific class declared
+3. protected - similar to private, but any class that extends another class inherits its properties as well
+
+strpos('string', 'character') - checks the position of a certain character in the string
+
+__destuct() - is use to perform cleanups whenever the last reference to an object instance is removed
+unset($instance) - function used to removes reference to the instance
+
+__clone() - 
+clone $instance - creates an identical copy of the object, used to store in another object
+
+
+static property - allows the use/call of a property directly without calling the instance
+this - is used to refer to the instance in which an object/property is called
+self - refers to the actual class itself and not the instance

@@ -1,0 +1,14 @@
+HTTP METHODS
+1.GET - used for retrieving resources
+2.POST - used for creating resources
+3.PUT - used for updating resources
+4.DELETE - used for deleting resources
+5.HEAD - similar to get, but only retrives the head resources
+6.PATCH - used for updating resources with partial json
+
+HTTP STATUS CODES
+1xx: Informational - request received/processing
+2xx: Success - successfully received
+3xx: Redirect - further action must be taken/redirect
+4xx: Client Error - request does not have what it needs
+5xx: Server Error - server failed to fulfill a valid request

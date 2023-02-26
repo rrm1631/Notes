@@ -1,0 +1,59 @@
+COMMANDS:
+
+laravel new projectname - creates new laravel project
+php artisan - shows all artisan commands
+php artisan serve
+php artisan make:controller ProvisionServer
+php artisan make:model Pizza - used to get data from db
+
+
+
+CREATE DATABASE USING LARAVEL:
+mysql -u root, note: root is the default username of mysql
+create database dblaravel; or simply create database dblaravel;
+
+
+
+ADD TABLES USING LARAVEL:
+php artisan make:migration create_pizza_table
+php artisan migrate
+	:fresh
+	:install
+	:refresh - cancels all migrations and then run the new ones (will rollback and run migrations)
+	:rollback - use to call the down functions of all of the migrations
+	:status 
+
+
+
+CREATE DUMMY DATABASE DATA:
+php artisan make:factory TodoFactory
+php artisan make:seed TodoSeeder
+php artisan db:seed
+
+
+
+
+Folders:
+app\http\controllers
+database\migration
+database\factories
+resources\views
+resources\routes
+app\model
+
+.env
+
+
+
+
+
+Others:
+
+request() is like $_GET() - it gets the value of the object in the url/ gets value from form
+@csrf - cross site request forgery, added in forms to bypass error 419
+error_log() similar to consol.log()
+
+models represents table, used to get data from db
+
+protected $casts = ['toppings' => 'array']; - under modal, you can add a property called casts. It takes an array as a value and any column that is passed inside it will cast into 
+a certain data type.

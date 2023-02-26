@@ -1,0 +1,22 @@
+Format
+{"key": "value"}
+
+Data Types
+- String {"name": "raph"}
+- Number {"age": 23} 
+- Object  {employee{"name": "raph", "age": 23}}
+- Array {"employees":["raph", "thor", "Tony"] }
+- Boolean {"answer": true}
+- Null {"middlename": null}
+
+CMD
+ npm install -g live-server
+
+
+NOTES:
+
+- JSON only supports text and number data types
+- Key names are always encapsulated by double qoutes ""
+- when passing data to the server, the server expects a json string by using JSON.stringify()	
+- when getting data from the server, in order to display the value you need to convert it back to a javascript object using JSON.parse()
+-  go to jsonlint.com to validate JSON
