@@ -1,0 +1,37 @@
+//pom.xml
+
+1. spring-boot-starter-parent - used to inherit the default maven configuration created by springboot to get started
+
+<parent> - is used to create a reference and inherits the default maven configuration to this project 
+from the parent.
+
+ex. 
+<parent>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-parent</artifactId>
+	<version>3.0.2</version>
+	<relativePath/> <!-- lookup parent from repository and inherits its maven configuration -->
+</parent>
+
+Note: 
+<artifactId>spring-boot-starter-parent</artifactId>
+- this is a created by springboot, where they put all the default maven configuration and for users to inherit
+the parents configuration to start working asap.
+
+
+
+
+2. spring-boot-starter-web - used to pull all the jars needed in order to create a spring web application.
+
+ex.
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+	</dependencies>	
+ 
+
+Note:
+- when creating a web application there is a lot of JARS that needed to be imported in order to get started. Springboot created a default list of jars that can be imported which in turn pulls in all the JARS, just by establishing a dependency 
+- when saved this will automatically import a library called Maven Dependencies

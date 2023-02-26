@@ -1,0 +1,86 @@
+Lombok - is an annptation-based java library that allows you to reduce boilerplate code. It offers various annotations aimed at replacing Java code that is well known for being boilerplate, repetiitive and tedious to write.
+ex.(toString(), equals(), getters and setters, etc.) by using Lombok you can avoid writing constructors with no arguments.
+
+//Lombok Annotations
+@Getter and @Setter - used to generate getters and setters methods
+	//How to Exclude method level
+	@Getter(value = AccessLevel.NONE)
+	private double savings;
+
+@EqualsAndHashCode  used to generate equals() and hashCode() methods
+	//Exclude method level
+	@EqualsAndHashCode.Exclude 
+    	private double savings;
+	
+	//Exclude class level
+	@EqualsAndHashCode(eXclude={"class_attributes", "email", "salary"})
+	public class Customer {}
+	
+	//Only Include using (of={})
+	@EqualsAndHashCode(of={"firstname", "lastname"}) //will create an equal and hashcode for this attributes only
+	public class Custome {}
+
+@ToString - used to generate toString method
+	@ToString
+	public class Customer {}
+
+@NoArgsConstructor - will generate a constructor that has no parameters
+	ex.
+	@ToString
+	public class Customer {}	== 	public Customer(){}
+Note:
+- if this in not possible a compiler error will be returned, unless @NoArgsConstructor(force = true) is used, then all final fields are initialized with 0/false/null.
+
+@AllArgsConstructor - will generate a constructor that includes all the fields
+	ex.
+	@ToString
+	public class Customer {		== 	public Customer(int id, String name){}
+		private int id;
+		private string name;
+	}	
+
+@RequiredArgsConstructor - will generate a connstructor with 1 parameter for each fields that requires special handling. Basically all final field that hasn't been initialized or has a value and @NonNull fields are declared.
+	ex.
+	@RequiredArgsConstructor
+	public class Customer {			==		Customer(NonNull id, int school_id)
+		@NonNull
+		private int id;
+		private String name;
+		private final int school_id;
+	}
+
+@Data - is a combination @Getter, @Setter, @RequiredArgsConstructor, @ToString, @EqualsAndHashCode
+
+@Value - is the immutable variant of @Data. All fields are made private and final by default, and setters are not generated.
+
+@Builder - allows you to automatically produce the code required to have your class be  instantiable with code such as:
+	
+		StudentBuilder.builder()
+			.id(0)
+			.name("Mario")
+			.city("Dasma")
+			.email("mario@metrobank.com.ph");
+
+@Log - creates a static final log field, initialized as is the commonly prescribed way for the logging framework you use to write log statements.
+
+
+
+
+
+
+//Add Lombok as Gradle Dependency
+dependencies {
+    compileOnly('org.projectlombok:lombok:1.16.20')
+}
+
+//Add Lombok as Maven Dependency
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.16.20</version>
+</dependency>
+
+
+
+
+

@@ -1,0 +1,62 @@
+
+//INITIALIZE SPRING PROJECT
+1. STS (Spring Tool Suite)
+- Maven Project - manually add all dependency
+Group - Group denotes the package name
+Artifact - Artifact denotes the Application name.
+
+add these in pom.xml:
+
+		<parent>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-parent</artifactId>
+			<version>3.0.2</version>
+			<relativePath/> <!-- lookup parent from repository and inherits its maven configuration -->
+		</parent>		
+
+		<dependencies>
+		  <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		  </dependency>
+		</dependencies>
+
+		
+
+
+- Spring Starter Project
+simply fillup fields and select Spring Web/Web as a dependency to import default configurations and dependencies 
+
+
+2. Spring Initializr (start.spring.io)	
+basic dependency:
+1. Starter Web - full stack web development w/ Tomcat and Spring MVC
+
+
+
+
+3. Springboot CLI
+- download and extract zip
+Cmd:
+spring - display list of commands
+run - runs a spring groovy script (a script used to bootstrap a complete spring application)
+
+//How to create a Spring App using CLI
+
+1. Create a simple goovy class
+nano app.groovy - create a simple groovy class called app.groovy (this is user defined)
+
+2. Inside the class, create a controller input the ff:
+@RestController 
+class AppCtrl {
+	@RequestMapping("/")
+	String app(){
+		"Hello World"
+	}
+}
+
+3. After adding the check if it is added by listing files
+ls
+
+4. Run app.groovy
+./spring run app.groovy

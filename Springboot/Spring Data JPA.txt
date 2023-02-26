@@ -1,0 +1,110 @@
+JPA (Java Persistence API) 
+- is a java specification that allows you to perform ORM.
+
+ORM (Object - Relational Mapping)
+- basically allows you to work with database, by letting you map your entity classes into sql tables
+
+Spring Data JPA - provides repository support for JPA and eases development of applications that need access to JPA resources.
+
+spring-boot-starter-data-jpa - dependency enables ORM in the context of the spring boot framework.
+	ex.
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+//Apache Derby Database
+- an embedded database server, and acts as the database server for springboot
+	ex.
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+Note:
+- springboot sees the embedded Derby database in the classpath and assumes that to be the database to connect to.
+
+
+//Defining a Simple Entity
+@Entity - used to indicates class as a JPA Entity.
+	ex.
+		@Entity
+		public class Customer {} //this will create a table called Customer
+
+Note:
+- Because no @Table annotation exists, it is assumed that this entity is mapped to a table named Customer
+ 
+
+@Id - used to indicates an object as an JPA ID.
+@GeneratedValue - used to indicate that the ID should be generated automatically.
+@Column(nullable = false) - basically NOT NULL in SQL
+
+	ex.
+		@Entity
+		public class Customer {
+  		   @Id
+  		   @GeneratedValue(strategy=GenerationType.AUTO)
+  		   private Long id; //this will be set as the primary key with Auto Increment
+ 		   private String firstName;
+  		   private String lastName;
+		}
+
+Note:
+The Customer object’s id property is annotated with @Id so that JPA recognizes it as the object’s ID. The id property is also annotated with @GeneratedValue to indicate that the ID should be generated automatically.
+
+The other two properties, firstName and lastName, are left unannotated. It is assumed that they are mapped to columns that share the same names as the properties themselves.
+		
+
+
+
+
+//Create Simple Queries
+CrudRepository - an interface available in Spring Boot that contains methods for CRUD operations. 
+	ex.
+		public interface TopicRepository extends CrudRepository<Topic, String>{
+		}
+Note:
+- By extending CrudRepository, the TopicRepository inherits several methods for working with Topic persistence, including methods for saving, deleting, and finding Customer entities.
+
+Example of Methods using CrudReposity
+1. findAll() - used to get all the instances from the table
+	ex. tr.findAll().forEach(topics::add);
+2. save() - used to save instances into the table, or if the instance exist it updates it instead
+	ex. tr.save(topic);
+3. findById()/findOne() - used to get the id of an instance, (pagayaw - "findById(id).orElse(null);")
+	ex. return tr.findById(id).orElse(null);
+4. deleteById() - used to delete an instance with a specific ID
+	ex. tr.save(topic);
+
+
+
+//Foreign Key Mapping
+@ManyToOne - allows you to define Many-to-one relationships between entity.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Note:
+The JPA auto configuration feature of the spring boot application attempts to establish database connection using JPA Datasource. The JPA DataSource bean requires database driver to connect to a database.
+
+The database driver should be available as a dependency in the pom.xml file. For the external databases such as Oracle, SQL Server, MySql, DB2, Postgres, MongoDB etc requires the database JDBC connection properties to establish the connection.
+
+You need to configure the database driver and the JDBC connection properties to fix this exception Failed to configure a DataSource: ‘url’ attribute is not specified and no embedded datasource could be configured. Reason: Failed to determine a suitable driver class.

@@ -1,0 +1,230 @@
+//SPRINGBOOT
+- is a project that is built on the top of the Spring Framework. It provides an easier and faster way to set up, configure, and run both simple and web-based applications.
+
+//MAVEN
+- used to inject dependencies in a single file, also known as a dependency management tool.
+- dependencies are added thru pom.xml
+
+
+
+//DEPENDENCIES - are the collection of artifacts that we can add to our project.
+
+//Example of Spring Dependencies
+1. Spring Webs
+2. Spring Reactive Web
+3. Thymeleaf
+4. Websockets
+5. Spring Data JPA
+6. MySQL Driver
+7. Lombok
+
+
+
+
+//Convenience Dependency (added in pom.xml)
+1. spring-boot-starter-web - used to automatically add all dependent jars required to start a spring app.
+
+syntax:
+		<dependencies>
+		  <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		  </dependency>
+		</dependencies>
+
+//Spring Boot Actuator
+spring-boot-starter-actuator - is a sub-project of springboot which uses endpoints to expose operational information about any running application.
+
+syntax:
+		<dependencies>
+		  <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		  </dependency>
+		</dependencies>
+ex.
+	URL: localhost:8080/health
+	- this returns a json which displays a status of the running application.
+	
+	{
+		"status":  "UP",
+		"diskSpace": 	{
+					"status":  "UP",
+					"total":  "24513334236236",
+					"free":   "16123124215161",
+				}
+	}
+
+
+//Application Properties (https://www.javatpoint.com/spring-boot-properties)
+- application.properties - built-in mechanism for application configuration. (path: src/main/resources)
+
+Ex.
+	#configuring application name  
+	spring.application.name = demoApplication  
+	#configuring port  
+	server.port = 8081 
+
+Note:
+- Spring Boot provides various properties that can be configured in the application.properties file. 
+- The properties have default values. 
+- We can set a property(s) for the Spring Boot application. Spring Boot also allows us to define our own property if required.
+
+
+
+
+//SpringBootApplication
+- used to tell springboot that this is the starting point for the springboot application.
+
+@SpringBootApplication - is a convenience annotation that adds (@EnableAutoConfiguration, ComponentScan, Configuration) annotations.
+1. @Configuration - Tags the class as a source of bean definitions for the application context.
+2. @EnableAutoConfiguration: Tells Spring Boot to start adding beans based on classpath settings, other beans, and various property settings.
+3. @ComponentScan: Tells Spring to look for other components, configurations, and services in the com/example package, letting it find the controllers.
+ 
+Note:
+- The main() method uses Spring Boot’s SpringApplication.run() method to launch an application.
+
+ex.
+	@SpringBootApplication
+	public class DemoApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(DemoApplication.class, args);
+	    }
+
+	}
+
+
+
+//REST Controller
+controller - is simply a java class that has certain annotations inside responsible for processing incoming REST API requests, preparing a model, and returning the view to be rendered as a response.
+
+Note:
+- The controller classes in Spring are annotated either by the @Controller or the @RestController annotation.
+
+@Contoller	- 
+@ResponseBody	-
+@RestController - a spring annotation, essentially just a combination of @Controller and @ResponseBody. Used to make a class into a RestController.
+		- this allows you to have methods in a class which map to URL requests when a user makes a request
+
+ex.
+	@RestController
+	public class HelloController {
+		some_function...
+	}
+
+
+@RequestMapping - a spring MVC annotation, takes in a parameter (url) that the class needs to map to.
+ex.
+	@RestController
+	public class HelloController {
+		
+		@RequestMapping("/hello") //Fires function when url matches /hello
+		public String SayHi() {
+			return "Hi";
+		}
+	}
+
+Note:
+- when @RestController is called, its default method is GET.
+- To use other methods, you need to explicitly metion the method you want to use
+
+@GetMapping is a shortcut for @RequestMapping(method = RequestMethod.GET), and is used to map HTTP GET requests to the mapped controller methods.
+
+
+
+
+
+//Instanciation using Service and Autowired annotations
+@Service - a stereotype annotation, used with classes that provide some functionalities which can be autodetected by spring when scanned.
+	ex.
+		@Service
+		public class MathService(){
+			public int add (int x, int y){
+				return x + y;
+			}
+
+			public int subtract (int x, int y){
+				return x - y;
+			}
+		}
+
+		//Inside Main
+		public static void main(String[] args) {
+			@Autowired
+			private MathService ms;
+
+			int sum = ms.add(1,2);
+			system.out.println("SUM: " + sum);
+		}
+
+
+@Autowired - checks the method delcared on for dependencies, and inject's it as an instance
+	ex.
+		@Autowired
+		private TopicService topicService; //the TopicService object will be injected into the topicService when program runs
+
+		//SERVICE METHOD
+		public List<Topic> getAllTopics() {
+			return topics; //topics is a List of objects
+		}
+
+//Return a single resource
+@PathVariable - returns the variables inside a path/url
+	ex.
+		@RequestMapping("/topic/{id}")
+		public Topic getTopic(@PathVariable String id) {
+			return ts.getTopic(id);
+		}
+
+		//SERVICE METHOD
+		public Topic getTopic(String id) {
+			return topics.stream().filter( t -> t.getId().equals(id)).findFirst().get();
+		}
+
+//Add new resource using POST
+@RequestBody - maps the HttpRequest body and converts it into an instance to be passed
+	ex.
+		@RequestMapping(method = RequestMethod.POST, value="/topic")
+		public void addTopic(@RequestBody Topic topic) {		
+			ts.addTopic(topic);
+		}
+
+		//SERVICE METHOD
+		public void addTopic(Topic topic) {
+			topics.add(topic);
+		}
+
+
+//Update resource using PUT
+	ex.
+		@RequestMapping(method = RequestMethod.PUT, value="/topic")
+		public void addTopic(@RequestBody Topic topic) {		
+			ts.updateTopic(id, topic);
+		}
+
+		//SERVICE METHOD
+		public void updateTopic(String id, Topic topic) {
+		for(int i = 0; i < topics.size(); i++) {
+			Topic t = topics.get(i);
+			if(t.getId().equals(id)) {
+				topics.set(i, topic);
+				return;
+			}
+		    }
+		}
+
+//Delete resource using DELETE
+	ex.
+		@RequestMapping(method = RequestMethod.DELETE, value="/topic/{id}")
+			public void deleteTopic(@PathVariable String id) {
+			ts.deleteTopic(id);
+		}
+
+		//SERVICE METHOD
+		public void deleteTopic(String id) {
+			topics.removeIf( t -> t.getId().equals(id));
+		}
+
+
+

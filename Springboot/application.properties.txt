@@ -1,0 +1,8 @@
+//Customize Springboot using application.properties
+- add a file under src/main/resources called application.properties to customize default properties of springboot.
+
+//Some Example of Springboot Configurations
+1.Configure default port of sublet container 
+	server.port = 3000 - will changed the default server from 8080 to 3000
+
+2. refer to docs.spring.io for more common application properties... hehe..
